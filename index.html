@@ -4,7 +4,54 @@
             <a href="#${t}"">${r}</a>
           </li>
         `).join("");u.innerHTML=e}
-</script></head> <body>  <header> <h1>TILs</h1> <p class="text-xs">一共有 38 条 TIL ...</p> <div class="search-wrapper relative" data-astro-cid-2hkkvdbw> <form id="search-form" data-astro-cid-2hkkvdbw> <input class="w-full outline-none" name="search" type="search" placeholder="Types..." autocomplete="off" data-astro-cid-2hkkvdbw> </form> <ul id="search-result" class="absolute top-[48px] w-full rounded pl-0 text-left max-h-[360px] overflow-auto" data-astro-cid-2hkkvdbw></ul> </div>   </header> <main id="top"> <article id="2024-07-30T0800"><header class="flex gap-4 items-center"><time datetime="">2024-07-30</time><span>#remix</span><a class="ml-auto" href="#top">
+</script></head> <body>  <header> <h1>TILs</h1> <p class="text-xs">一共有 39 条 TIL ...</p> <div class="search-wrapper relative" data-astro-cid-2hkkvdbw> <form id="search-form" data-astro-cid-2hkkvdbw> <input class="w-full outline-none" name="search" type="search" placeholder="Types..." autocomplete="off" data-astro-cid-2hkkvdbw> </form> <ul id="search-result" class="absolute top-[48px] w-full rounded pl-0 text-left max-h-[360px] overflow-auto" data-astro-cid-2hkkvdbw></ul> </div>   </header> <main id="top"> <article id="2024-09-03T0800"><header class="flex gap-4 items-center"><time datetime="">2024-09-03</time><span>#typescript</span><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-09-03T0800">#typescript - Object with Dynamic Keys</a></h1><p>我有一个函数 <code>fn</code>，会传入一个由对象组成的数组 <code>list</code>，在声明函数时我可以确定的是每个对象各个键的值的类型都是 <code>string</code>，但我还无法确定各个键具体是什么键。也就是说，我知道传入的是 a list of object，但不知道到底是 a list of users，还是 a list of blogs，还是 a list of tasks。</p>
+
+    <div class="code-block__wrapper language-ts">
+      <div class="code-block__header">
+        <span class="lang">ts</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-ts"><span class="line"><span style="color:#569CD6">function</span><span style="color:#DCDCAA"> fn</span><span style="color:#D4D4D4">&#x3C;</span><span style="color:#4EC9B0">T</span><span style="color:#D4D4D4">>(</span><span style="color:#9CDCFE">list</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">T</span><span style="color:#D4D4D4">[]) {</span></span>
+<span class="line"><span style="color:#6A9955">  // ...</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+
+    </div><p>也就是说，对于传入的 a list of object，这里的 object 可能是 user，也可能是 blog，也可能是 tasks 等等。也就是说，这里的 object 是 dynamic object，换句话说，是 object with dynamic keys。</p>
+<p>而对于 object with dynamic keys, TypeScript 提供两种类型批注的方式：</p>
+<ul>
+<li>一是，index signatures。</li>
+<li>二是，<code>Record</code> type。</li>
+</ul>
+<h2>方案一：Index Signature</h2>
+<p>你可以使用 index signature 来指定一个对象可以拥有任意数量特定类型的属性。</p>
+
+    <div class="code-block__wrapper language-ts">
+      <div class="code-block__header">
+        <span class="lang">ts</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-ts"><span class="line"><span style="color:#569CD6">interface</span><span style="color:#4EC9B0"> ListItem</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#D4D4D4">  [</span><span style="color:#9CDCFE">key</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">]: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">function</span><span style="color:#DCDCAA"> fn</span><span style="color:#D4D4D4">&#x3C;</span><span style="color:#4EC9B0">T</span><span style="color:#569CD6"> extends</span><span style="color:#4EC9B0"> ListItem</span><span style="color:#D4D4D4">>(</span><span style="color:#9CDCFE">list</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">T</span><span style="color:#D4D4D4">[]) {</span></span>
+<span class="line"><span style="color:#6A9955">	// ...</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+
+    </div><h2>方案二：<code>Record</code> type</h2>
+<p><code>Record</code> type 是一个泛型，你可以用它来创建一个由你来指定 key type 和 value type 的 object type。</p>
+
+    <div class="code-block__wrapper language-ts">
+      <div class="code-block__header">
+        <span class="lang">ts</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-ts"><span class="line"><span style="color:#569CD6">function</span><span style="color:#DCDCAA"> fn</span><span style="color:#D4D4D4">&#x3C;</span><span style="color:#4EC9B0">T</span><span style="color:#569CD6"> extends</span><span style="color:#4EC9B0"> Record</span><span style="color:#D4D4D4">&#x3C;</span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">, </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">>>(</span><span style="color:#9CDCFE">list</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">T</span><span style="color:#D4D4D4">[]) {</span></span>
+<span class="line"><span style="color:#6A9955">  // ...</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+
+    </div><h2>参考</h2>
+<p><a href="https://www.basedash.com/blog/typescript-object-with-dynamic-keys" target="_blank">https://www.basedash.com/blog/typescript-object-with-dynamic-keys</a>
+TypeScript Object with Dynamic Keys | Basedash</p>
+</article><article id="2024-07-30T0800"><header class="flex gap-4 items-center"><time datetime="">2024-07-30</time><span>#remix</span><a class="ml-auto" href="#top">
 ↑
 </a></header><h1><a href="#2024-07-30T0800">Remix - Render all routes from `app/routes/` dir</a></h1>
     <div class="code-block__wrapper language-tsx">
