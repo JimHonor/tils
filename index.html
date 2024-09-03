@@ -6,7 +6,7 @@
         `).join("");u.innerHTML=e}
 </script></head> <body>  <header> <h1>TILs</h1> <p class="text-xs">一共有 39 条 TIL ...</p> <div class="search-wrapper relative" data-astro-cid-2hkkvdbw> <form id="search-form" data-astro-cid-2hkkvdbw> <input class="w-full outline-none" name="search" type="search" placeholder="Types..." autocomplete="off" data-astro-cid-2hkkvdbw> </form> <ul id="search-result" class="absolute top-[48px] w-full rounded pl-0 text-left max-h-[360px] overflow-auto" data-astro-cid-2hkkvdbw></ul> </div>   </header> <main id="top"> <article id="2024-09-03T0800"><header class="flex gap-4 items-center"><time datetime="">2024-09-03</time><span>#typescript</span><a class="ml-auto" href="#top">
 ↑
-</a></header><h1><a href="#2024-09-03T0800">#typescript - Object with Dynamic Keys</a></h1><p>我有一个函数 <code>fn</code>，会传入一个由对象组成的数组 <code>list</code>，在声明函数时我可以确定的是每个对象各个键的值的类型都是 <code>string</code>，但我还无法确定各个键具体是什么键。也就是说，我知道传入的是 a list of object，但不知道到底是 a list of users，还是 a list of blogs，还是 a list of tasks。</p>
+</a></header><h1><a href="#2024-09-03T0800">#typescript - Object with Dynamic Keys</a></h1><p>我有一个函数 <code>fn</code>，会传入一个由对象组成的数组 <code>list</code>，在声明函数时我可以确定的是每个对象各个键的值的类型都是 <code>string</code>，但我还无法确定各个键具体是什么键。</p>
 
     <div class="code-block__wrapper language-ts">
       <div class="code-block__header">
@@ -16,7 +16,8 @@
 <span class="line"><span style="color:#6A9955">  // ...</span></span>
 <span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
 
-    </div><p>也就是说，对于传入的 a list of object，这里的 object 可能是 user，也可能是 blog，也可能是 tasks 等等。也就是说，这里的 object 是 dynamic object，换句话说，是 object with dynamic keys。</p>
+    </div><p>也就是说，我知道传入的是 a list of object，但不知道到底是 a list of users，还是 a list of blogs，还是 a list of tasks。</p>
+<p>也就是说，对于传入的 a list of object，这里的 object 可能是 user，也可能是 blog，也可能是 task 等等。也就是说，这里的 object 是 dynamic object，换句话说，是 object with dynamic keys。</p>
 <p>而对于 object with dynamic keys, TypeScript 提供两种类型批注的方式：</p>
 <ul>
 <li>一是，index signatures。</li>
