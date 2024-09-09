@@ -4,7 +4,166 @@
             <a href="#${t}"">${r}</a>
           </li>
         `).join("");u.innerHTML=e}
-</script></head> <body>  <header> <h1>TILs</h1> <p class="text-xs">一共有 46 条 TIL ...</p> <div class="search-wrapper relative" data-astro-cid-2hkkvdbw> <form id="search-form" data-astro-cid-2hkkvdbw> <input class="w-full outline-none" name="search" type="search" placeholder="Types..." autocomplete="off" data-astro-cid-2hkkvdbw> </form> <ul id="search-result" class="absolute top-[48px] w-full rounded pl-0 text-left max-h-[360px] overflow-auto" data-astro-cid-2hkkvdbw></ul> </div>   </header> <main id="top"> <article id="2024-09-05T0800"><header class="flex gap-4 items-center"><time datetime="">2024-09-05</time><span>#vscode</span><a class="ml-auto" href="#top">
+</script></head> <body>  <header> <h1>TILs</h1> <p class="text-xs">一共有 50 条 TIL ...</p> <div class="search-wrapper relative" data-astro-cid-2hkkvdbw> <form id="search-form" data-astro-cid-2hkkvdbw> <input class="w-full outline-none" name="search" type="search" placeholder="Types..." autocomplete="off" data-astro-cid-2hkkvdbw> </form> <ul id="search-result" class="absolute top-[48px] w-full rounded pl-0 text-left max-h-[360px] overflow-auto" data-astro-cid-2hkkvdbw></ul> </div>   </header> <main id="top"> <article id="2024-09-08T0800"><header class="flex gap-4 items-center"><time datetime="">2024-09-08</time><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-09-08T0800">JavaScript - async/await in loop</a></h1><p>#javascript</p>
+<h2>map()</h2>
+<p>我的问题来源于：我有一个数组，需要完成 map 操作，那么想当然用的就是 <code>map()</code> 方法，但代码写着写着我发现在一个循环里面，我需要执行异步操作，这时问题就出现了 -- 因为 <code>map()</code> 方法的回调里面执行异步操作是会出问题的。于是，我转而使用传统的 for loop 来完成 map 操作。</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> urls</span><span style="color:#D4D4D4"> = [</span><span style="color:#CE9178">"..."</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">"..."</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">"..."</span><span style="color:#D4D4D4">];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">async</span><span style="color:#569CD6"> function</span><span style="color:#DCDCAA"> takeScreenshot</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">url</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#C586C0">  return</span><span style="color:#569CD6"> new</span><span style="color:#4EC9B0"> Promise</span><span style="color:#D4D4D4">((</span><span style="color:#9CDCFE">resolve</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#6A9955">    // take screenshot for url ...</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> screenshotUrl</span><span style="color:#D4D4D4"> = </span><span style="color:#CE9178">"..."</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#DCDCAA">    resolve</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">screenshotUrl</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">  });</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">async</span><span style="color:#569CD6"> function</span><span style="color:#DCDCAA"> get</span><span style="color:#D4D4D4">() {</span></span>
+<span class="line"><span style="color:#C586C0">  return</span><span style="color:#9CDCFE"> urls</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">map</span><span style="color:#D4D4D4">(</span><span style="color:#569CD6">async</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">url</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> screenshotUrl</span><span style="color:#D4D4D4"> = </span><span style="color:#C586C0">await</span><span style="color:#DCDCAA"> takeScreenshot</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">url</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#C586C0">    return</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">url</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">screenshotUrl</span><span style="color:#D4D4D4"> };</span></span>
+<span class="line"><span style="color:#D4D4D4">  });</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">get</span><span style="color:#D4D4D4">().</span><span style="color:#DCDCAA">then</span><span style="color:#D4D4D4">((</span><span style="color:#9CDCFE">result</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=></span><span style="color:#9CDCFE"> console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">result</span><span style="color:#D4D4D4">));</span></span>
+<span class="line"><span style="color:#6A9955">// >> [ Promise { &#x3C;pending> }, Promise { &#x3C;pending> }, Promise { &#x3C;pending> } ]</span></span></code></pre>
+
+    </div><h2>for loop</h2>
+<p>不用 <code>map()</code>，用传统的 for loop 是没问题的。</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> urls</span><span style="color:#D4D4D4"> = [</span><span style="color:#CE9178">"..."</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">"..."</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">"..."</span><span style="color:#D4D4D4">];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">async</span><span style="color:#569CD6"> function</span><span style="color:#DCDCAA"> takeScreenshot</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">url</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#C586C0">  return</span><span style="color:#569CD6"> new</span><span style="color:#4EC9B0"> Promise</span><span style="color:#D4D4D4">((</span><span style="color:#9CDCFE">resolve</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#6A9955">    // take screenshot for url ...</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> screenshotUrl</span><span style="color:#D4D4D4"> = </span><span style="color:#CE9178">"..."</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#DCDCAA">    resolve</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">screenshotUrl</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">  });</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">async</span><span style="color:#569CD6"> function</span><span style="color:#DCDCAA"> get</span><span style="color:#D4D4D4">() {</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#4FC1FF"> result</span><span style="color:#D4D4D4"> = [];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">  for</span><span style="color:#D4D4D4"> (</span><span style="color:#569CD6">let</span><span style="color:#9CDCFE"> index</span><span style="color:#D4D4D4"> = </span><span style="color:#B5CEA8">0</span><span style="color:#D4D4D4">; </span><span style="color:#9CDCFE">index</span><span style="color:#D4D4D4"> &#x3C; </span><span style="color:#9CDCFE">urls</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">length</span><span style="color:#D4D4D4">; </span><span style="color:#9CDCFE">index</span><span style="color:#D4D4D4">++) {</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> url</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">urls</span><span style="color:#D4D4D4">[</span><span style="color:#9CDCFE">index</span><span style="color:#D4D4D4">];</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> screenshotUrl</span><span style="color:#D4D4D4"> = </span><span style="color:#C586C0">await</span><span style="color:#DCDCAA"> takeScreenshot</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">url</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">    result</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">push</span><span style="color:#D4D4D4">({ </span><span style="color:#9CDCFE">url</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">screenshotUrl</span><span style="color:#D4D4D4"> });</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">  return</span><span style="color:#9CDCFE"> result</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">get</span><span style="color:#D4D4D4">().</span><span style="color:#DCDCAA">then</span><span style="color:#D4D4D4">((</span><span style="color:#9CDCFE">result</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=></span><span style="color:#9CDCFE"> console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">result</span><span style="color:#D4D4D4">));</span></span>
+<span class="line"><span style="color:#6A9955">// >></span></span>
+<span class="line"><span style="color:#6A9955">/*</span></span>
+<span class="line"><span style="color:#6A9955">[</span></span>
+<span class="line"><span style="color:#6A9955">  { url: '...', screenshotUrl: '...' },</span></span>
+<span class="line"><span style="color:#6A9955">  { url: '...', screenshotUrl: '...' },</span></span>
+<span class="line"><span style="color:#6A9955">  { url: '...', screenshotUrl: '...' }</span></span>
+<span class="line"><span style="color:#6A9955">]</span></span>
+<span class="line"><span style="color:#6A9955">*/</span></span></code></pre>
+
+    </div><h2>for...of loop</h2>
+<p>你也可以用 <code>for...of</code> loop，如果你在循环中不需要用到索引的话。</p>
+
+    <div class="code-block__wrapper language-ts">
+      <div class="code-block__header">
+        <span class="lang">ts</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-ts"><span class="line"><span style="color:#6A9955">// ...</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">async</span><span style="color:#569CD6"> function</span><span style="color:#DCDCAA"> get</span><span style="color:#D4D4D4">() {</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#4FC1FF"> result</span><span style="color:#D4D4D4"> = [];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">  for</span><span style="color:#D4D4D4"> (</span><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> url</span><span style="color:#569CD6"> of</span><span style="color:#9CDCFE"> urls</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> screenshotUrl</span><span style="color:#D4D4D4"> = </span><span style="color:#C586C0">await</span><span style="color:#DCDCAA"> takeScreenshot</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">url</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">    result</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">push</span><span style="color:#D4D4D4">({ </span><span style="color:#9CDCFE">url</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">screenshotUrl</span><span style="color:#D4D4D4"> });</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">  return</span><span style="color:#9CDCFE"> result</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">// ...</span></span></code></pre>
+
+    </div><h2>参考资料</h2>
+<p><a href="https://zellwk.com/blog/async-await-in-loops/" target="_blank">JavaScript async and await in loops | Zell Liew</a></p>
+</article><article id="2024-09-08T0810"><header class="flex gap-4 items-center"><time datetime="">2024-09-08</time><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-09-08T0810">用正则表达式提取 markdown 格式的文本里的标题和网址</a></h1><p>#javascript</p>
+<p>↓↓
+ChatGPT:</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#6A9955">// 输入字符串</span></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> text</span><span style="color:#D4D4D4"> = </span><span style="color:#CE9178">'[Okalpha](https://www.okalpha.co/) #company_site #portfolio'</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">// 使用正则表达式提取标题和网址</span></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> regex</span><span style="color:#D4D4D4"> =</span><span style="color:#D16969"> /</span><span style="color:#D7BA7D">\[</span><span style="color:#CE9178">(</span><span style="color:#D16969">.</span><span style="color:#D7BA7D">*?</span><span style="color:#CE9178">)</span><span style="color:#D7BA7D">\]\(</span><span style="color:#CE9178">(</span><span style="color:#D16969">.</span><span style="color:#D7BA7D">*?</span><span style="color:#CE9178">)</span><span style="color:#D7BA7D">\)</span><span style="color:#D16969">/</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> match</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">text</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">match</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">regex</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">match</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> title</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">match</span><span style="color:#D4D4D4">[</span><span style="color:#B5CEA8">1</span><span style="color:#D4D4D4">];</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> url</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">match</span><span style="color:#D4D4D4">[</span><span style="color:#B5CEA8">2</span><span style="color:#D4D4D4">];</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">`Title: </span><span style="color:#569CD6">${</span><span style="color:#9CDCFE">title</span><span style="color:#569CD6">}</span><span style="color:#CE9178">`</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">`URL: </span><span style="color:#569CD6">${</span><span style="color:#9CDCFE">url</span><span style="color:#569CD6">}</span><span style="color:#CE9178">`</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">} </span><span style="color:#C586C0">else</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'No match found'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+
+    </div></article><article id="2024-09-08T0820"><header class="flex gap-4 items-center"><time datetime="">2024-09-08</time><span>#typescript</span><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-09-08T0820">Getting the return type of resolved promise</a></h1><p><a href="https://stackoverflow.com/questions/57267067/getting-the-return-type-of-resolved-promise" target="_blank">typescript - Getting the return type of resolved promise? - Stack Overflow</a></p>
+
+    <div class="code-block__wrapper language-ts">
+      <div class="code-block__header">
+        <span class="lang">ts</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-ts"><span class="line"><span style="color:#569CD6">async</span><span style="color:#569CD6"> function</span><span style="color:#DCDCAA"> foo</span><span style="color:#D4D4D4">() {</span></span>
+<span class="line"><span style="color:#6A9955">  // ...</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">let</span><span style="color:#9CDCFE"> bar</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">Awaited</span><span style="color:#D4D4D4">&#x3C;</span><span style="color:#4EC9B0">ReturnType</span><span style="color:#D4D4D4">&#x3C;</span><span style="color:#569CD6">typeof</span><span style="color:#9CDCFE"> foo</span><span style="color:#D4D4D4">>></span></span></code></pre>
+
+    </div></article><article id="2024-09-08T0830"><header class="flex gap-4 items-center"><time datetime="">2024-09-08</time><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-09-08T0830">TS - get the type of an array’s elements</a></h1><p>#typescript</p>
+<p>↓↓
+<a href="https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html" target="_blank">https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html</a></p>
+
+    <div class="code-block__wrapper language-ts">
+      <div class="code-block__header">
+        <span class="lang">ts</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-ts"><span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> MyArray</span><span style="color:#D4D4D4"> = [</span></span>
+<span class="line"><span style="color:#D4D4D4">  { </span><span style="color:#9CDCFE">name:</span><span style="color:#CE9178"> "Alice"</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">age:</span><span style="color:#B5CEA8"> 15</span><span style="color:#D4D4D4"> },</span></span>
+<span class="line"><span style="color:#D4D4D4">  { </span><span style="color:#9CDCFE">name:</span><span style="color:#CE9178"> "Bob"</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">age:</span><span style="color:#B5CEA8"> 23</span><span style="color:#D4D4D4"> },</span></span>
+<span class="line"><span style="color:#D4D4D4">  { </span><span style="color:#9CDCFE">name:</span><span style="color:#CE9178"> "Eve"</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">age:</span><span style="color:#B5CEA8"> 38</span><span style="color:#D4D4D4"> },</span></span>
+<span class="line"><span style="color:#D4D4D4">];</span></span>
+<span class="line"><span style="color:#D4D4D4"> </span></span>
+<span class="line"><span style="color:#569CD6">type</span><span style="color:#4EC9B0"> Person</span><span style="color:#D4D4D4"> = </span><span style="color:#569CD6">typeof</span><span style="color:#9CDCFE"> MyArray</span><span style="color:#D4D4D4">[</span><span style="color:#9CDCFE">number</span><span style="color:#D4D4D4">];</span></span>
+<span class="line"><span style="color:#6A9955">/*</span></span>
+<span class="line"><span style="color:#6A9955">type Person = {</span></span>
+<span class="line"><span style="color:#6A9955">    name: string;</span></span>
+<span class="line"><span style="color:#6A9955">    age: number;</span></span>
+<span class="line"><span style="color:#6A9955">}</span></span>
+<span class="line"><span style="color:#6A9955">*/</span></span></code></pre>
+
+    </div></article><article id="2024-09-05T0800"><header class="flex gap-4 items-center"><time datetime="">2024-09-05</time><span>#vscode</span><a class="ml-auto" href="#top">
 ↑
 </a></header><h1><a href="#2024-09-05T0800">VSCode Extension for `console.log()`</a></h1><h2>Console Ninja</h2>
 <p>console-ninja 是让你能直接在代码端看到 Log Message，不用跑到浏览器控制台。</p>
