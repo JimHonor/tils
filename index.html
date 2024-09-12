@@ -4,10 +4,248 @@
             <a href="#${t}"">${r}</a>
           </li>
         `).join("");u.innerHTML=e}
-</script></head> <body>  <header> <h1>TILs</h1> <p class="text-xs">一共有 50 条 TIL ...</p> <div class="search-wrapper relative" data-astro-cid-2hkkvdbw> <form id="search-form" data-astro-cid-2hkkvdbw> <input class="w-full outline-none" name="search" type="search" placeholder="Types..." autocomplete="off" data-astro-cid-2hkkvdbw> </form> <ul id="search-result" class="absolute top-[48px] w-full rounded pl-0 text-left max-h-[360px] overflow-auto" data-astro-cid-2hkkvdbw></ul> </div>   </header> <main id="top"> <article id="2024-09-08T0800"><header class="flex gap-4 items-center"><time datetime="">2024-09-08</time><a class="ml-auto" href="#top">
+</script></head> <body>  <header> <h1>TILs</h1> <p class="text-xs">一共有 54 条 TIL ...</p> <div class="search-wrapper relative" data-astro-cid-2hkkvdbw> <form id="search-form" data-astro-cid-2hkkvdbw> <input class="w-full outline-none" name="search" type="search" placeholder="Types..." autocomplete="off" data-astro-cid-2hkkvdbw> </form> <ul id="search-result" class="absolute top-[48px] w-full rounded pl-0 text-left max-h-[360px] overflow-auto" data-astro-cid-2hkkvdbw></ul> </div>   </header> <main id="top"> <article id="2024-09-09T0800"><header class="flex gap-4 items-center"><time datetime="">2024-09-09</time><span>#javascript</span><a class="ml-auto" href="#top">
 ↑
-</a></header><h1><a href="#2024-09-08T0800">JavaScript - async/await in loop</a></h1><p>#javascript</p>
-<h2>map()</h2>
+</a></header><h1><a href="#2024-09-09T0800">continue, break and return in JavaScript</a></h1><p>其实对比下来，区别已经很明显了：</p>
+<ul>
+<li><code>continue</code> 的话是：跳过当前迭代的剩余语句，直接跳转到循环的下一个迭代。也就是跳出迭代。</li>
+<li><code>break</code> 的话是：跳过当前迭代的剩余语句、以及所有剩下的迭代，直接跳转到 for loop 后面的语句。也就是跳出循环。</li>
+<li><code>return</code> 的话是：直接终止函数的运行。</li>
+</ul>
+<h2>continue</h2>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#569CD6">function</span><span style="color:#DCDCAA"> bar</span><span style="color:#D4D4D4">() {</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#4FC1FF"> result</span><span style="color:#D4D4D4"> = [];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">  for</span><span style="color:#D4D4D4"> (</span><span style="color:#569CD6">let</span><span style="color:#9CDCFE"> count</span><span style="color:#D4D4D4"> = </span><span style="color:#B5CEA8">0</span><span style="color:#D4D4D4">; </span><span style="color:#9CDCFE">count</span><span style="color:#D4D4D4"> &#x3C; </span><span style="color:#B5CEA8">9</span><span style="color:#D4D4D4">; </span><span style="color:#9CDCFE">count</span><span style="color:#D4D4D4">++) {</span></span>
+<span class="line"><span style="color:#6A9955">    // 如果 count 是一个奇数，则跳过</span></span>
+<span class="line"><span style="color:#C586C0">    if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">count</span><span style="color:#D4D4D4"> % </span><span style="color:#B5CEA8">2</span><span style="color:#D4D4D4"> !== </span><span style="color:#B5CEA8">0</span><span style="color:#D4D4D4">) </span><span style="color:#C586C0">continue</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">    result</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">push</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">count</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">  return</span><span style="color:#9CDCFE"> result</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#DCDCAA">bar</span><span style="color:#D4D4D4">());</span></span>
+<span class="line"><span style="color:#6A9955">// print: [ 0, 2, 4, 6, 8 ]</span></span></code></pre>
+
+    </div><h2>break</h2>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#569CD6">function</span><span style="color:#DCDCAA"> bar</span><span style="color:#D4D4D4">() {</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#4FC1FF"> result</span><span style="color:#D4D4D4"> = [];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">  for</span><span style="color:#D4D4D4"> (</span><span style="color:#569CD6">let</span><span style="color:#9CDCFE"> count</span><span style="color:#D4D4D4"> = </span><span style="color:#B5CEA8">1</span><span style="color:#D4D4D4">; </span><span style="color:#9CDCFE">count</span><span style="color:#D4D4D4"> &#x3C; </span><span style="color:#B5CEA8">9</span><span style="color:#D4D4D4">; </span><span style="color:#9CDCFE">count</span><span style="color:#D4D4D4">++) {</span></span>
+<span class="line"><span style="color:#C586C0">    if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">count</span><span style="color:#D4D4D4"> > </span><span style="color:#B5CEA8">3</span><span style="color:#D4D4D4">) </span><span style="color:#C586C0">break</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">    result</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">push</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">count</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">  return</span><span style="color:#9CDCFE"> result</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#DCDCAA">bar</span><span style="color:#D4D4D4">());</span></span>
+<span class="line"><span style="color:#6A9955">// print: [ 1, 2, 3 ]</span></span></code></pre>
+
+    </div><h2>return</h2>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#569CD6">function</span><span style="color:#DCDCAA"> fn</span><span style="color:#D4D4D4">() {</span></span>
+<span class="line"><span style="color:#C586C0">  for</span><span style="color:#D4D4D4"> (</span><span style="color:#569CD6">let</span><span style="color:#9CDCFE"> index</span><span style="color:#D4D4D4"> = </span><span style="color:#B5CEA8">0</span><span style="color:#D4D4D4">; </span><span style="color:#9CDCFE">index</span><span style="color:#D4D4D4"> &#x3C; </span><span style="color:#B5CEA8">9</span><span style="color:#D4D4D4">; </span><span style="color:#9CDCFE">index</span><span style="color:#D4D4D4">++) {</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">index</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">    if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">index</span><span style="color:#D4D4D4"> === </span><span style="color:#B5CEA8">3</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#C586C0">      return</span><span style="color:#569CD6"> true</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#DCDCAA">fn</span><span style="color:#D4D4D4">());</span></span>
+<span class="line"><span style="color:#6A9955">/* print:</span></span>
+<span class="line"><span style="color:#6A9955">0</span></span>
+<span class="line"><span style="color:#6A9955">1</span></span>
+<span class="line"><span style="color:#6A9955">2</span></span>
+<span class="line"><span style="color:#6A9955">3</span></span>
+<span class="line"><span style="color:#6A9955">true</span></span>
+<span class="line"><span style="color:#6A9955">*/</span></span></code></pre>
+
+    </div></article><article id="2024-09-09T0810"><header class="flex gap-4 items-center"><time datetime="">2024-09-09</time><span>#javascript</span><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-09-09T0810">break out of loops in JavaScript</a></h1><h2>break with for loop</h2>
+<p>假设我们有一个数组，里面有 0 到 3 这个四个数字，我们想要打印出这四个数字，可以通过 for 循环来实现。</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> list</span><span style="color:#D4D4D4"> = [</span><span style="color:#B5CEA8">0</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">1</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">2</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">3</span><span style="color:#D4D4D4">]</span></span>
+<span class="line"><span style="color:#C586C0">for</span><span style="color:#D4D4D4"> (</span><span style="color:#569CD6">let</span><span style="color:#9CDCFE"> i</span><span style="color:#D4D4D4"> = </span><span style="color:#B5CEA8">0</span><span style="color:#D4D4D4">; </span><span style="color:#9CDCFE">i</span><span style="color:#D4D4D4"> &#x3C; </span><span style="color:#9CDCFE">list</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">length</span><span style="color:#D4D4D4">; </span><span style="color:#9CDCFE">i</span><span style="color:#D4D4D4">++) {</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">list</span><span style="color:#D4D4D4">[</span><span style="color:#9CDCFE">i</span><span style="color:#D4D4D4">])</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">// 0</span></span>
+<span class="line"><span style="color:#6A9955">// 1</span></span>
+<span class="line"><span style="color:#6A9955">// 2</span></span>
+<span class="line"><span style="color:#6A9955">// 3</span></span></code></pre>
+
+    </div><p>在这段程序中，我们通过 for 循环，在每次迭代中打印 <code>list[i]</code> 的值。</p>
+<p>假设现在我们不想打印全部数字了，而是打印到 1 就不再打了，我们可以通过 break 关键字来实现。</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> list</span><span style="color:#D4D4D4"> = [</span><span style="color:#B5CEA8">0</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">1</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">2</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">3</span><span style="color:#D4D4D4">]</span></span>
+<span class="line"><span style="color:#C586C0">for</span><span style="color:#D4D4D4"> (</span><span style="color:#569CD6">let</span><span style="color:#9CDCFE"> i</span><span style="color:#D4D4D4"> = </span><span style="color:#B5CEA8">0</span><span style="color:#D4D4D4">; </span><span style="color:#9CDCFE">i</span><span style="color:#D4D4D4"> &#x3C; </span><span style="color:#9CDCFE">list</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">length</span><span style="color:#D4D4D4">; </span><span style="color:#9CDCFE">i</span><span style="color:#D4D4D4">++) {</span></span>
+<span class="line"><span style="color:#C586C0">    if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">list</span><span style="color:#D4D4D4">[</span><span style="color:#9CDCFE">i</span><span style="color:#D4D4D4">] === </span><span style="color:#B5CEA8">2</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#C586C0">        break</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">list</span><span style="color:#D4D4D4">[</span><span style="color:#9CDCFE">i</span><span style="color:#D4D4D4">])</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">// 0</span></span>
+<span class="line"><span style="color:#6A9955">// 1</span></span></code></pre>
+
+    </div><p>break 语句的用法如下：</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#C586C0">if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">list</span><span style="color:#D4D4D4">[</span><span style="color:#9CDCFE">i</span><span style="color:#D4D4D4">] === </span><span style="color:#B5CEA8">2</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#C586C0">	break</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"></span></code></pre>
+
+    </div><p>这段程序的意思是，当 <code>list[i]</code> 的值等于 2 时，break 语句就结束循环。也就是说，<strong>break 语句之后的程序不会再运行，并且之后的迭代也不会再进行</strong>。因此，最后只打印出了 0 和 1，而大于或等于 2 的值则没有打印出来。</p>
+<h2>break with for...of loop</h2>
+<p>break 也可以在 for...of 循环中使用：</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> list</span><span style="color:#D4D4D4"> = [</span><span style="color:#B5CEA8">0</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">1</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">2</span><span style="color:#D4D4D4">, </span><span style="color:#B5CEA8">3</span><span style="color:#D4D4D4">]</span></span>
+<span class="line"><span style="color:#C586C0">for</span><span style="color:#D4D4D4"> (</span><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> item</span><span style="color:#569CD6"> of</span><span style="color:#9CDCFE"> list</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#C586C0">    if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">item</span><span style="color:#D4D4D4"> === </span><span style="color:#B5CEA8">2</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#C586C0">        break</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">item</span><span style="color:#D4D4D4">)</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">// 0</span></span>
+<span class="line"><span style="color:#6A9955">// 1</span></span></code></pre>
+
+    </div><h2>break with map method of Array</h2>
+<p>顺便提一句，数组的 map 方法无法提前跳出循环！</p>
+</article><article id="2024-09-09T0820"><header class="flex gap-4 items-center"><time datetime="">2024-09-09</time><span>#javascript</span><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-09-09T0820">立即执行的匿名 async 函数</a></h1>
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#D4D4D4">(</span><span style="color:#569CD6">async</span><span style="color:#D4D4D4"> () </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#6A9955">  // ...</span></span>
+<span class="line"><span style="color:#D4D4D4">})();</span></span></code></pre>
+
+    </div></article><article id="2024-09-09T0830"><header class="flex gap-4 items-center"><time datetime="">2024-09-09</time><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-09-09T0830">js rss parser</a></h1><p>To parse RSS, you can use <a href="https://github.com/rbren/rss-parser" target="_blank">rbren/rss-parser</a> (works both in Node and the browser ).</p>
+<p>This is a small library for turning RSS XML feeds into JavaScript objects.</p>
+<p>You can parse RSS from a URL (<code>parser.parseURL</code>) or an XML string (<code>parser.parseString</code>).</p>
+<h2>示例</h2>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#C586C0">import</span><span style="color:#9CDCFE"> Parser</span><span style="color:#C586C0"> from</span><span style="color:#CE9178"> "rss-parser"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">async</span><span style="color:#569CD6"> function</span><span style="color:#DCDCAA"> getFeed</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">websites</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#4FC1FF"> result</span><span style="color:#D4D4D4"> = [];</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#4FC1FF"> parser</span><span style="color:#D4D4D4"> = </span><span style="color:#569CD6">new</span><span style="color:#DCDCAA"> Parser</span><span style="color:#D4D4D4">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">  for</span><span style="color:#D4D4D4"> (</span><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> website</span><span style="color:#569CD6"> of</span><span style="color:#9CDCFE"> websites</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> feed</span><span style="color:#D4D4D4"> = </span><span style="color:#C586C0">await</span><span style="color:#9CDCFE"> parser</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">parseURL</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">website</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">    for</span><span style="color:#D4D4D4"> (</span><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> item</span><span style="color:#569CD6"> of</span><span style="color:#9CDCFE"> feed</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">items</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#9CDCFE">      result</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">push</span><span style="color:#D4D4D4">({</span></span>
+<span class="line"><span style="color:#9CDCFE">        title:</span><span style="color:#9CDCFE"> item</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">title</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        link:</span><span style="color:#9CDCFE"> item</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">link</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">        pubDate:</span><span style="color:#569CD6"> new</span><span style="color:#DCDCAA"> Date</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">item</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">pubDate</span><span style="color:#D4D4D4">).</span><span style="color:#DCDCAA">toISOString</span><span style="color:#D4D4D4">(),</span></span>
+<span class="line"><span style="color:#9CDCFE">        from:</span><span style="color:#9CDCFE"> feed</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">link</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#D4D4D4">      });</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">  return</span><span style="color:#9CDCFE"> result</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> websites</span><span style="color:#D4D4D4"> = [</span></span>
+<span class="line"><span style="color:#CE9178">  "https://nicolas-hoizey.com/feeds/links.xml"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#CE9178">  "https://www.alexmolas.com/feed.xml"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#CE9178">  "https://www.joshwcomeau.com/rss.xml"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#D4D4D4">];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">getFeed</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">websites</span><span style="color:#D4D4D4">);</span></span></code></pre>
+
+    </div><p>Examples for <code>const feed = await parser.parseURL(website);</code>:</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> feed01</span><span style="color:#D4D4D4"> = {</span></span>
+<span class="line"><span style="color:#9CDCFE">  link:</span><span style="color:#CE9178"> "https://nicolas-hoizey.com/feeds/links.xml"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  feedUrl:</span><span style="color:#CE9178"> "https://nicolas-hoizey.com/feeds/links.xml"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  title:</span><span style="color:#CE9178"> "Nicolas Hoizey - Links"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  lastBuildDate:</span><span style="color:#CE9178"> "2024-09-09T08:45:45Z"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  items:</span><span style="color:#D4D4D4"> [</span></span>
+<span class="line"><span style="color:#D4D4D4">    {</span></span>
+<span class="line"><span style="color:#9CDCFE">      title:</span><span style="color:#CE9178"> "An even faster Microsoft Edge"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">      link:</span><span style="color:#CE9178"> ""</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">      pubDate:</span><span style="color:#CE9178"> "2024-05-29T08:38:56.000Z"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">      content:</span><span style="color:#CE9178"> ""</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">      contentSnippet:</span><span style="color:#CE9178"> ""</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">      id:</span><span style="color:#CE9178"> "https://nicolas-hoizey.com/links/2024/05/29/an-even-faster-microsoft-edge/"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">      isoDate:</span><span style="color:#CE9178"> "2024-05-29T08:38:56.000Z"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#D4D4D4">    },</span></span>
+<span class="line"><span style="color:#D4D4D4">  ],</span></span>
+<span class="line"><span style="color:#D4D4D4">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> feed02</span><span style="color:#D4D4D4"> = {</span></span>
+<span class="line"><span style="color:#9CDCFE">  link:</span><span style="color:#CE9178"> "https://alexmolas.com/"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  feedUrl:</span><span style="color:#CE9178"> "https://alexmolas.com/feed.xml"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  title:</span><span style="color:#CE9178"> "Alex Molas Blog"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  lastBuildDate:</span><span style="color:#CE9178"> "2024-09-09T06:02:29+00:00"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  items:</span><span style="color:#D4D4D4"> [</span></span>
+<span class="line"><span style="color:#D4D4D4">    {</span></span>
+<span class="line"><span style="color:#9CDCFE">      title:</span><span style="color:#CE9178"> "Dynamic Programming (i): Multiplying Matrices"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">      link:</span><span style="color:#CE9178"> "https://alexmolas.com/2020/12/31/dynamic-programming-i.html"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">      pubDate:</span><span style="color:#CE9178"> "2020-12-31T00:00:00.000Z"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">      author:</span><span style="color:#CE9178"> ""</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">      summary:</span><span style="color:#CE9178"> ""</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">      id:</span><span style="color:#CE9178"> "https://alexmolas.com/2020/12/31/dynamic-programming-i"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">      isoDate:</span><span style="color:#CE9178"> "2020-12-31T00:00:00.000Z"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#D4D4D4">    },</span></span>
+<span class="line"><span style="color:#D4D4D4">  ],</span></span>
+<span class="line"><span style="color:#D4D4D4">};</span></span></code></pre>
+
+    </div></article><article id="2024-09-08T0800"><header class="flex gap-4 items-center"><time datetime="">2024-09-08</time><span>#javascript</span><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-09-08T0800">JavaScript - async/await in loop</a></h1><h2>map()</h2>
 <p>我的问题来源于：我有一个数组，需要完成 map 操作，那么想当然用的就是 <code>map()</code> 方法，但代码写着写着我发现在一个循环里面，我需要执行异步操作，这时问题就出现了 -- 因为 <code>map()</code> 方法的回调里面执行异步操作是会出问题的。于是，我转而使用传统的 for loop 来完成 map 操作。</p>
 
     <div class="code-block__wrapper language-js">
@@ -99,10 +337,9 @@
 
     </div><h2>参考资料</h2>
 <p><a href="https://zellwk.com/blog/async-await-in-loops/" target="_blank">JavaScript async and await in loops | Zell Liew</a></p>
-</article><article id="2024-09-08T0810"><header class="flex gap-4 items-center"><time datetime="">2024-09-08</time><a class="ml-auto" href="#top">
+</article><article id="2024-09-08T0810"><header class="flex gap-4 items-center"><time datetime="">2024-09-08</time><span>#javascript</span><a class="ml-auto" href="#top">
 ↑
-</a></header><h1><a href="#2024-09-08T0810">用正则表达式提取 markdown 格式的文本里的标题和网址</a></h1><p>#javascript</p>
-<p>↓↓
+</a></header><h1><a href="#2024-09-08T0810">用正则表达式提取 markdown 格式的文本里的标题和网址</a></h1><p>↓↓
 ChatGPT:</p>
 
     <div class="code-block__wrapper language-js">
@@ -139,10 +376,9 @@ ChatGPT:</p>
 <span class="line"></span>
 <span class="line"><span style="color:#569CD6">let</span><span style="color:#9CDCFE"> bar</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">Awaited</span><span style="color:#D4D4D4">&#x3C;</span><span style="color:#4EC9B0">ReturnType</span><span style="color:#D4D4D4">&#x3C;</span><span style="color:#569CD6">typeof</span><span style="color:#9CDCFE"> foo</span><span style="color:#D4D4D4">>></span></span></code></pre>
 
-    </div></article><article id="2024-09-08T0830"><header class="flex gap-4 items-center"><time datetime="">2024-09-08</time><a class="ml-auto" href="#top">
+    </div></article><article id="2024-09-08T0830"><header class="flex gap-4 items-center"><time datetime="">2024-09-08</time><span>#typescript</span><a class="ml-auto" href="#top">
 ↑
-</a></header><h1><a href="#2024-09-08T0830">TS - get the type of an array’s elements</a></h1><p>#typescript</p>
-<p>↓↓
+</a></header><h1><a href="#2024-09-08T0830">TS - get the type of an array’s elements</a></h1><p>↓↓
 <a href="https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html" target="_blank">https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html</a></p>
 
     <div class="code-block__wrapper language-ts">
@@ -879,7 +1115,7 @@ Prevent Horizontal Scroll on Smaller Devices</p>
 
     </div></article><article id="2024-07-26T0820"><header class="flex gap-4 items-center"><time datetime="">2024-07-26</time><span>#javascript</span><a class="ml-auto" href="#top">
 ↑
-</a></header><h1><a href="#2024-07-26T0820">JavaScript - Capture screenshots of websites </a></h1><p>方法：</p>
+</a></header><h1><a href="#2024-07-26T0820">JavaScript - Capture screenshots of websites</a></h1><p>方法：</p>
 <p>使用 <a href="https://github.com/sindresorhus/capture-website" target="_blank">https://github.com/sindresorhus/capture-website</a></p>
 <p>安装：</p>
 
