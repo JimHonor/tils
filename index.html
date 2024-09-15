@@ -4,7 +4,89 @@
             <a href="#${t}"">${r}</a>
           </li>
         `).join("");u.innerHTML=e}
-</script></head> <body>  <header> <h1>TILs</h1> <p class="text-xs">一共有 54 条 TIL ...</p> <div class="search-wrapper relative" data-astro-cid-2hkkvdbw> <form id="search-form" data-astro-cid-2hkkvdbw> <input class="w-full outline-none" name="search" type="search" placeholder="Types..." autocomplete="off" data-astro-cid-2hkkvdbw> </form> <ul id="search-result" class="absolute top-[48px] w-full rounded pl-0 text-left max-h-[360px] overflow-auto" data-astro-cid-2hkkvdbw></ul> </div>   </header> <main id="top"> <article id="2024-09-09T0800"><header class="flex gap-4 items-center"><time datetime="">2024-09-09</time><span>#javascript</span><a class="ml-auto" href="#top">
+</script></head> <body>  <header> <h1>TILs</h1> <p class="text-xs">一共有 55 条 TIL ...</p> <div class="search-wrapper relative" data-astro-cid-2hkkvdbw> <form id="search-form" data-astro-cid-2hkkvdbw> <input class="w-full outline-none" name="search" type="search" placeholder="Types..." autocomplete="off" data-astro-cid-2hkkvdbw> </form> <ul id="search-result" class="absolute top-[48px] w-full rounded pl-0 text-left max-h-[360px] overflow-auto" data-astro-cid-2hkkvdbw></ul> </div>   </header> <main id="top"> <article id="2024-09-14T0800"><header class="flex gap-4 items-center"><time datetime="">2024-09-14</time><span>#open_api</span><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-09-14T0800">TMDB  API</a></h1><h2>Links Shortcut</h2>
+<p><a href="https://www.themoviedb.org/settings/api" target="_blank">My API Settings — The Movie Database (TMDB)</a></p>
+<ul>
+<li>Here, you can get your API Key or API Read Access Token.</li>
+</ul>
+<p><a href="https://www.themoviedb.org/" target="_blank">The Movie Database (TMDB)</a></p>
+<h2>身份验证</h2>
+<p><a href="https://developer.themoviedb.org/docs/authentication-application" target="_blank">https://developer.themoviedb.org/docs/authentication-application</a></p>
+<p>↓</p>
+<p>身份验证有两种方式：</p>
+<p>一是：Use your <strong>API Key</strong> as query parameter</p>
+
+    <div class="code-block__wrapper language-bash">
+      <div class="code-block__header">
+        <span class="lang">bash</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#DCDCAA">curl</span><span style="color:#569CD6"> --request</span><span style="color:#CE9178"> GET</span><span style="color:#D7BA7D"> \</span></span>
+<span class="line"><span style="color:#569CD6">     --url</span><span style="color:#CE9178"> 'https://api.themoviedb.org/3/movie/11?api_key=&#x3C;API_KEY>'</span></span></code></pre>
+
+    </div><p>二是：Use your <strong>API Read Access Token</strong> as a <code>Bearer</code> token</p>
+
+    <div class="code-block__wrapper language-bash">
+      <div class="code-block__header">
+        <span class="lang">bash</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#DCDCAA">curl</span><span style="color:#569CD6"> --request</span><span style="color:#CE9178"> GET</span><span style="color:#D7BA7D"> \</span></span>
+<span class="line"><span style="color:#569CD6">     --url</span><span style="color:#CE9178"> 'https://api.themoviedb.org/3/movie/11'</span><span style="color:#D7BA7D"> \</span></span>
+<span class="line"><span style="color:#569CD6">     --header</span><span style="color:#CE9178"> 'Authorization: Bearer ACCESS_TOKEN'</span></span></code></pre>
+
+    </div><h2>常用接口</h2>
+<p>一、接口使用指南</p>
+<p><a href="https://developer.themoviedb.org/docs/search-and-query-for-details" target="_blank">https://developer.themoviedb.org/docs/search-and-query-for-details</a> - Guide</p>
+<p>A common workflow here on TMDB is to <strong>search for a movie (or TV show, or person) and then query for the details</strong>.</p>
+<p>You can use that id to query the movie details method:</p>
+<p>二、API 文档</p>
+<p><a href="https://developer.themoviedb.org/reference/search-movie" target="_blank">https://developer.themoviedb.org/reference/search-movie</a> - 搜索电影
+<a href="https://developer.themoviedb.org/reference/movie-details" target="_blank">https://developer.themoviedb.org/reference/movie-details</a> - 电影的详细信息
+<a href="https://developer.themoviedb.org/reference/movie-release-dates" target="_blank">https://developer.themoviedb.org/reference/movie-release-dates</a> - 电影在各个地区的上映日期
+<a href="https://developer.themoviedb.org/reference/movie-credits" target="_blank">https://developer.themoviedb.org/reference/movie-credits</a> - 电影的所有制作人员</p>
+<p>三、</p>
+<p>movie-credits</p>
+<ul>
+<li>cast - 演员</li>
+<li>crew - 工作人员</li>
+</ul>
+
+    <div class="code-block__wrapper language-json">
+      <div class="code-block__header">
+        <span class="lang">json</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-json"><span class="line"><span style="color:#D4D4D4">{</span></span>
+<span class="line"><span style="color:#9CDCFE">	"id"</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">116745</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">	"cast"</span><span style="color:#D4D4D4">: [],</span></span>
+<span class="line"><span style="color:#9CDCFE">	"crew"</span><span style="color:#D4D4D4">: []</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+
+    </div><h2>语言和地区</h2>
+<p><a href="https://developer.themoviedb.org/docs/languages" target="_blank">https://developer.themoviedb.org/docs/languages</a></p>
+<p>格式为 <code>language-COUNTRY</code>，比如默认的 <code>en-US</code>。</p>
+<p>The <strong>language</strong> code system we use is <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" target="_blank">ISO 639-1</a>.</p>
+<p>The <strong>country</strong> codes in use here are <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" target="_blank">ISO 3166-1</a>.</p>
+<p>↓↓</p>
+<p><a href="https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes" target="_blank">https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes</a> - ISO 639</p>
+<p>Language name - code</p>
+<ul>
+<li>Chinese - <code>zh</code></li>
+<li>English - <code>en</code></li>
+<li>French - <code>fr</code></li>
+<li>German - <code>de</code></li>
+<li>Italian - <code>it</code></li>
+<li>Japanese - <code>ja</code></li>
+<li>Spanish - <code>es</code></li>
+</ul>
+<p>↓↓</p>
+<p><a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" target="_blank">https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2</a> - ISO 3166-1</p>
+<p>Country name - code</p>
+<ul>
+<li>China - <code>CN</code></li>
+<li>United States of America - <code>US</code></li>
+</ul>
+</article><article id="2024-09-09T0800"><header class="flex gap-4 items-center"><time datetime="">2024-09-09</time><span>#javascript</span><a class="ml-auto" href="#top">
 ↑
 </a></header><h1><a href="#2024-09-09T0800">continue, break and return in JavaScript</a></h1><p>其实对比下来，区别已经很明显了：</p>
 <ul>
