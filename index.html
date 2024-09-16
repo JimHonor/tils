@@ -4,7 +4,7 @@
             <a href="#${t}"">${r}</a>
           </li>
         `).join("");u.innerHTML=e}
-</script></head> <body>  <header> <h1>TILs</h1> <p class="text-xs">一共有 55 条 TIL ...</p> <div class="search-wrapper relative" data-astro-cid-2hkkvdbw> <form id="search-form" data-astro-cid-2hkkvdbw> <input class="w-full outline-none" name="search" type="search" placeholder="Types..." autocomplete="off" data-astro-cid-2hkkvdbw> </form> <ul id="search-result" class="absolute top-[48px] w-full rounded pl-0 text-left max-h-[360px] overflow-auto" data-astro-cid-2hkkvdbw></ul> </div>   </header> <main id="top"> <article id="2024-09-14T0800"><header class="flex gap-4 items-center"><time datetime="">2024-09-14</time><span>#open_api</span><a class="ml-auto" href="#top">
+</script></head> <body>  <header> <h1>TILs</h1> <p class="text-xs">一共有 61 条 TIL ...</p> <div class="search-wrapper relative" data-astro-cid-2hkkvdbw> <form id="search-form" data-astro-cid-2hkkvdbw> <input class="w-full outline-none" name="search" type="search" placeholder="Types..." autocomplete="off" data-astro-cid-2hkkvdbw> </form> <ul id="search-result" class="absolute top-[48px] w-full rounded pl-0 text-left max-h-[360px] overflow-auto" data-astro-cid-2hkkvdbw></ul> </div>   </header> <main id="top"> <article id="2024-09-14T0800"><header class="flex gap-4 items-center"><time datetime="">2024-09-14</time><span>#open_api</span><a class="ml-auto" href="#top">
 ↑
 </a></header><h1><a href="#2024-09-14T0800">TMDB  API</a></h1><h2>Links Shortcut</h2>
 <p><a href="https://www.themoviedb.org/settings/api" target="_blank">My API Settings — The Movie Database (TMDB)</a></p>
@@ -85,6 +85,257 @@
 <ul>
 <li>China - <code>CN</code></li>
 <li>United States of America - <code>US</code></li>
+</ul>
+</article><article id="2024-09-13T0800"><header class="flex gap-4 items-center"><time datetime="">2024-09-13</time><span>#astro</span><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-09-13T0800">astro - render markdown content to html</a></h1><p>You can render Markdown entries to HTML using the entry <code>render()</code> function.</p>
+<p>Calling thig function gives you access to rendered content, a <code>&lt;Content /&gt;</code> component.</p>
+<p>For example:</p>
+
+    <div class="code-block__wrapper language-astro">
+      <div class="code-block__header">
+        <span class="lang">astro</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-astro"><span class="line"><span style="color:#6A9955">---</span></span>
+<span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">getCollection</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> "astro:content"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#C586C0">import</span><span style="color:#C586C0"> type</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">AstroComponentFactory</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> "astro/runtime/server/index.js"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> col</span><span style="color:#D4D4D4"> = </span><span style="color:#C586C0">await</span><span style="color:#DCDCAA"> getCollection</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"tips"</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> tips</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">AstroComponentFactory</span><span style="color:#D4D4D4">[] = [];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">for</span><span style="color:#D4D4D4"> (</span><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> item</span><span style="color:#569CD6"> of</span><span style="color:#9CDCFE"> tipsCol</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#D4D4D4"> { </span><span style="color:#4FC1FF">Content</span><span style="color:#D4D4D4"> } = </span><span style="color:#C586C0">await</span><span style="color:#9CDCFE"> item</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">render</span><span style="color:#D4D4D4">();</span></span>
+<span class="line"><span style="color:#9CDCFE">  tips</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">push</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">Content</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"><span style="color:#6A9955">---</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">{</span></span>
+<span class="line"><span style="color:#9CDCFE">  tips</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">map</span><span style="color:#D4D4D4">((</span><span style="color:#9CDCFE">Content</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> (</span></span>
+<span class="line"><span style="color:#808080">    &#x3C;</span><span style="color:#569CD6">article</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#808080">      &#x3C;</span><span style="color:#4EC9B0">Content</span><span style="color:#808080"> /></span></span>
+<span class="line"><span style="color:#808080">    &#x3C;/</span><span style="color:#569CD6">article</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#D4D4D4">  ))</span></span>
+<span class="line"><span style="color:#569CD6">}</span></span></code></pre>
+
+    </div><p>source: <a href="https://docs.astro.build/en/guides/content-collections/#rendering-content-to-html" target="_blank">https://docs.astro.build/en/guides/content-collections/#rendering-content-to-html</a></p>
+</article><article id="2024-09-13T0810"><header class="flex gap-4 items-center"><time datetime="">2024-09-13</time><span>#astro</span><span>#svelte</span><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-09-13T0810">astro - using with svelte</a></h1><h2>安装</h2>
+<p>按照<a href="https://docs.astro.build/en/guides/integrations-guide/svelte/" target="_blank">文档</a>安装即可。</p>
+<h3>用法</h3>
+<p>Use your Svelte components in your Astro pages, layouts and components <strong>just like Astro components</strong>!</p>
+<p>举个例子：</p>
+
+    <div class="code-block__wrapper language-html">
+      <div class="code-block__header">
+        <span class="code-block__filename">src\components\Counter.svelte</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-html"><span class="line"><span style="color:#808080">&#x3C;</span><span style="color:#569CD6">button</span><span style="color:#808080">></span><span style="color:#D4D4D4">click</span><span style="color:#808080">&#x3C;/</span><span style="color:#569CD6">button</span><span style="color:#808080">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#808080">&#x3C;</span><span style="color:#569CD6">style</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#D7BA7D">  button</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    color</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">red</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#808080">&#x3C;/</span><span style="color:#569CD6">style</span><span style="color:#808080">></span></span></code></pre>
+
+    </div>
+    <div class="code-block__wrapper language-astro">
+      <div class="code-block__header">
+        <span class="code-block__filename">src\pages\somepage.astro</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-astro"><span class="line"><span style="color:#6A9955">---</span></span>
+<span class="line"><span style="color:#C586C0">import</span><span style="color:#9CDCFE"> Counter</span><span style="color:#C586C0"> from</span><span style="color:#CE9178"> "../components/Counter.svetle"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#6A9955">---</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#808080">&#x3C;</span><span style="color:#4EC9B0">Counter</span><span style="color:#808080"> /></span></span></code></pre>
+
+    </div></article><article id="2024-09-13T0820"><header class="flex gap-4 items-center"><time datetime="">2024-09-13</time><span>#astro</span><span>#web_component</span><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-09-13T0820">astro - using with web component</a></h1><h2>示例</h2>
+
+    <div class="code-block__wrapper language-astro">
+      <div class="code-block__header">
+        <span class="lang">astro</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-astro"><span class="line"><span style="color:#6A9955">---</span></span>
+<span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">getEntry</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> 'astro:content'</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> entry</span><span style="color:#D4D4D4"> = </span><span style="color:#C586C0">await</span><span style="color:#DCDCAA"> getEntry</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">'blog'</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">'post-1'</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#D4D4D4"> { </span><span style="color:#4FC1FF">Content</span><span style="color:#D4D4D4"> } = </span><span style="color:#C586C0">await</span><span style="color:#9CDCFE"> entry</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">render</span><span style="color:#D4D4D4">();</span></span>
+<span class="line"><span style="color:#6A9955">---</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#808080">&#x3C;</span><span style="color:#4EC9B0">Content</span><span style="color:#808080"> /></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#808080">&#x3C;</span><span style="color:#569CD6">script</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#569CD6">  class</span><span style="color:#4EC9B0"> LiveDemo</span><span style="color:#569CD6"> extends</span><span style="color:#4EC9B0"> HTMLElement</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#569CD6">    constructor</span><span style="color:#D4D4D4">() {</span></span>
+<span class="line"><span style="color:#569CD6">      super</span><span style="color:#D4D4D4">();</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">  customElements</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">define</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"live-demo"</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">LiveDemo</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#808080">&#x3C;/</span><span style="color:#569CD6">script</span><span style="color:#808080">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#808080">&#x3C;</span><span style="color:#569CD6">style</span><span style="color:#9CDCFE"> is:global</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#569CD6">  live-demo</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">    display</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">block</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    border</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1px</span><span style="color:#CE9178"> solid</span><span style="color:#CE9178"> gray</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    border-radius</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">4px</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">    padding</span><span style="color:#D4D4D4">: </span><span style="color:#B5CEA8">1rem</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#808080">&#x3C;/</span><span style="color:#569CD6">style</span><span style="color:#808080">></span></span></code></pre>
+
+    </div><p>Here, I define a custom element called <code>live-demo</code>.</p>
+
+    <div class="code-block__wrapper language-md">
+      <div class="code-block__header">
+        <span class="code-block__filename">src/content/blog/post-1.md</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-txt"><span class="line"><span>## CSS Disaplay Hidden Elment on Hover</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>&#x3C;live-demo></span></span>
+<span class="line"><span>  &#x3C;div class="css-display-hidden-element-on-hover">&#x3C;/div></span></span>
+<span class="line"><span>  &#x3C;style></span></span>
+<span class="line"><span>    .css-display-hidden-element-on-hover {</span></span>
+<span class="line"><span>      opacity: 0;</span></span>
+<span class="line"><span>      &#x26;:hover {</span></span>
+<span class="line"><span>        opacity: 100;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>      width: 100px;</span></span>
+<span class="line"><span>      height: 100px;</span></span>
+<span class="line"><span>      background-color: red;</span></span>
+<span class="line"><span>      margin: auto;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>  &#x3C;/style></span></span>
+<span class="line"><span>&#x3C;/live-demo></span></span></code></pre>
+
+    </div><p>Here, I use the <code>live-demo</code> custom element in my markdown.</p>
+<h2>FIN</h2>
+<p>source: <a href="https://docs.astro.build/en/guides/client-side-scripts/#web-components-with-custom-elements" target="_blank">https://docs.astro.build/en/guides/client-side-scripts/#web-components-with-custom-elements</a></p>
+</article><article id="2024-09-13T0830"><header class="flex gap-4 items-center"><time datetime="">2024-09-13</time><span>#astro</span><span>#svelte</span><span>#web_component</span><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-09-13T0830">astro - using with svelte as web component</a></h1><h2>示例</h2>
+
+    <div class="code-block__wrapper language-svelte">
+      <div class="code-block__header">
+        <span class="code-block__filename">src/web-components/LiveDemo.svelte</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-txt"><span class="line"><span>&#x3C;svelte:options customElement="live-demo" /></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>&#x3C;div></span></span>
+<span class="line"><span>  Opacity</span></span>
+<span class="line"><span>&#x3C;/div></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>&#x3C;style></span></span>
+<span class="line"><span>  div {</span></span>
+<span class="line"><span>    opacity: 0;</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    &#x26;:hover {</span></span>
+<span class="line"><span>      opacity: 100;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    width: 100px;</span></span>
+<span class="line"><span>    height: 100px;</span></span>
+<span class="line"><span>    background-color: brown;</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>&#x3C;/style></span></span></code></pre>
+
+    </div><p>Here, I define a custom element called <code>live-demo</code> using Svelte.</p>
+
+    <div class="code-block__wrapper language-astro">
+      <div class="code-block__header">
+        <span class="code-block__filename">src/pages/index.astro</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-astro"><span class="line"><span style="color:#808080">&#x3C;</span><span style="color:#569CD6">script</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#C586C0">  import</span><span style="color:#9CDCFE"> LiveDemo</span><span style="color:#C586C0"> from</span><span style="color:#CE9178"> "../web-components/LiveDemo.svelte"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#808080">&#x3C;/</span><span style="color:#569CD6">script</span><span style="color:#808080">></span></span></code></pre>
+
+    </div><p>Here, I ...</p>
+
+    <div class="code-block__wrapper language-md">
+      <div class="code-block__header">
+        <span class="code-block__filename">src/content/post/001.md</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-txt"><span class="line"><span>## Hello</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>&#x3C;live-demo></span></span>
+<span class="line"><span>&#x3C;/live-demo></span></span></code></pre>
+
+    </div><p>Here, I use the <code>live-demo</code> custom element in my markdown.</p>
+<h2>FIN</h2>
+<p><a href="https://jakelazaroff.com/words/web-components-eliminate-javascript-framework-lock-in/#todo-items" target="_blank">https://jakelazaroff.com/words/web-components-eliminate-javascript-framework-lock-in/#todo-items</a></p>
+<ul>
+<li>Svelte supports custom elements out of the box. <strong>Rather than continuing to show the same web component wrapper boilerplate every time, we’ll just use that feature!</strong></li>
+</ul>
+<p><a href="https://svelte.dev/docs/custom-elements-api" target="_blank">https://svelte.dev/docs/custom-elements-api</a></p>
+<p><a href="https://svelte.dev/docs/special-elements#svelte-options" target="_blank">https://svelte.dev/docs/special-elements#svelte-options</a></p>
+</article><article id="2024-09-13T0840"><header class="flex gap-4 items-center"><time datetime="">2024-09-13</time><span>#svelte</span><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-09-13T0840">svelte - somthing like children prop in react</a></h1><p>You can use slot. It is a component provided by svelte. You can use it inside your component. <strong>Whatever is passed to component will be rendered in place of slot</strong>.</p>
+
+    <div class="code-block__wrapper language-svelte">
+      <div class="code-block__header">
+        <span class="code-block__filename">Widget.svelte</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-txt"><span class="line"><span>&#x3C;div></span></span>
+<span class="line"><span>	&#x3C;slot /></span></span>
+<span class="line"><span>&#x3C;/div></span></span></code></pre>
+
+    </div><p>Here, I define a Svelte component, which using the <code>&lt;slot&gt;</code> element to render whatever is passed to this component.</p>
+
+    <div class="code-block__wrapper language-svelte">
+      <div class="code-block__header">
+        <span class="code-block__filename">App.svelte</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-txt"><span class="line"><span>&#x3C;Widget></span></span>
+<span class="line"><span>	&#x3C;p>this is some child content that will overwrite the default slot content&#x3C;/p></span></span>
+<span class="line"><span>&#x3C;/Widget></span></span></code></pre>
+
+    </div><p>Here, I use the <code>&lt;Widget /&gt;</code> component and pass some content to it.</p>
+<h2>FIN</h2>
+<p><a href="https://stackoverflow.com/questions/57062741/svelte-equivalent-of-reacts-props-children" target="_blank">javascript - Svelte equivalent of React's props.children? - Stack Overflow</a></p>
+<ul>
+<li>You can use slot. It is a component provided by svelte. You can use it inside your component. <strong>Whatever is passed to component will be rendered in place of slot</strong>.</li>
+</ul>
+<p><a href="https://svelte.dev/docs/special-elements#slot" target="_blank">https://svelte.dev/docs/special-elements#slot</a></p>
+<ul>
+<li>Components can have child content, in the same way that elements can. The content is exposed in the child component using the <code>&lt;slot&gt;</code> element.</li>
+</ul>
+</article><article id="2024-09-13T0850"><header class="flex gap-4 items-center"><time datetime="">2024-09-13</time><span>#vscode</span><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-09-13T0850">vscode - enable html autocompletion on markdown</a></h1><p>To do this, you should change your Emmet configuration.</p>
+<h2>参考</h2>
+<p><a href="https://github.com/nuxt/content/issues/23" target="_blank">https://github.com/nuxt/content/issues/23</a></p>
+<ol>
+<li>Delete markdown from excluded languages. Seems it's there by default</li>
+</ol>
+
+    <div class="code-block__wrapper language-json">
+      <div class="code-block__header">
+        <span class="lang">json</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-json"><span class="line"><span style="color:#CE9178">  "emmet.excludeLanguages"</span><span style="color:#D4D4D4">: []</span></span></code></pre>
+
+    </div><ol start="2">
+<li>Include markdown but as html, so I get suggestions too</li>
+</ol>
+
+    <div class="code-block__wrapper language-json">
+      <div class="code-block__header">
+        <span class="lang">json</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-json"><span class="line"><span style="color:#CE9178">  "emmet.includeLanguages"</span><span style="color:#D4D4D4">: {</span></span>
+<span class="line"><span style="color:#9CDCFE">    "markdown"</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">"html"</span></span>
+<span class="line"><span style="color:#D4D4D4">  },</span></span></code></pre>
+
+    </div><p>Now you can have html in md fully!</p>
+<h2>参考</h2>
+<p>Emmet: Exclude Languages
+An array of languages where Emmet abbreviations should not be expanded.</p>
+<p>Emmet: Include Languages</p>
+<ul>
+<li>Enable Emmet abbreviations in languages that are not supported by default.</li>
+<li>Add a mapping here between the language and Emmet supported language.</li>
+<li>For example: <code>{&quot;vue-html&quot;: &quot;html&quot;, &quot;javascript&quot;: &quot;javascriptreact&quot;}</code></li>
 </ul>
 </article><article id="2024-09-09T0800"><header class="flex gap-4 items-center"><time datetime="">2024-09-09</time><span>#javascript</span><a class="ml-auto" href="#top">
 ↑
