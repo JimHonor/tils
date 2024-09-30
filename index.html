@@ -4,7 +4,190 @@
             <a href="#${t}"">${r}</a>
           </li>
         `).join("");u.innerHTML=e}
-</script></head> <body>  <header> <h1>TILs</h1> <p class="text-xs">一共有 68 条 TIL ...</p> <div class="search-wrapper relative" data-astro-cid-2hkkvdbw> <form id="search-form" data-astro-cid-2hkkvdbw> <input class="w-full outline-none" name="search" type="search" placeholder="Types..." autocomplete="off" data-astro-cid-2hkkvdbw> </form> <ul id="search-result" class="absolute top-[48px] w-full rounded pl-0 text-left max-h-[360px] overflow-auto" data-astro-cid-2hkkvdbw></ul> </div>   </header> <main id="top"> <article id="2024-09-14T0800"><header class="flex gap-4 items-center"><time datetime="">2024-09-14</time><span>#open_api</span><a class="ml-auto" href="#top">
+</script></head> <body>  <header> <h1>TILs</h1> <p class="text-xs">一共有 73 条 TIL ...</p> <div class="search-wrapper relative" data-astro-cid-2hkkvdbw> <form id="search-form" data-astro-cid-2hkkvdbw> <input class="w-full outline-none" name="search" type="search" placeholder="Types..." autocomplete="off" data-astro-cid-2hkkvdbw> </form> <ul id="search-result" class="absolute top-[48px] w-full rounded pl-0 text-left max-h-[360px] overflow-auto" data-astro-cid-2hkkvdbw></ul> </div>   </header> <main id="top"> <article id="2024-09-28T0800"><header class="flex gap-4 items-center"><time datetime="">2024-09-28</time><span>#tailwind</span><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-09-28T0800">tailwind - fix Unknown at rule @tailwindcss</a></h1><h2>问题</h2>
+
+    <div class="code-block__wrapper language-css">
+      <div class="code-block__header">
+        <span class="lang">css</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-css"><span class="line"><span style="color:#C586C0">@tailwind</span><span style="color:#D4D4D4"> base;</span></span>
+<span class="line"><span style="color:#C586C0">@tailwind</span><span style="color:#D4D4D4"> components;</span></span>
+<span class="line"><span style="color:#C586C0">@tailwind</span><span style="color:#D4D4D4"> utilities;</span></span></code></pre>
+
+    </div><p>warning: Unknown at rule @tailwindcss(unknownAtRules)</p>
+<h2>方案</h2>
+<p>方案一：【我不喜欢这个方式，太麻烦】</p>
+<p>Open a CSS file in your project, and from the VS Code Command Palette choose “Change Language Mode”, then pick “Tailwind CSS” from the list.</p>
+<p>方案二：【暂时先用这个方式吧】</p>
+<p>打开  <code>.vscode/settings.json</code> (如果项目中没有的话就创建一个)，添加如下配置：</p>
+
+    <div class="code-block__wrapper language-json">
+      <div class="code-block__header">
+        <span class="lang">json</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-json"><span class="line"><span style="color:#D4D4D4">{</span></span>
+<span class="line"><span style="color:#9CDCFE">  "files.associations"</span><span style="color:#D4D4D4">: {</span></span>
+<span class="line"><span style="color:#9CDCFE">    "*.css"</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">"tailwindcss"</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+
+    </div><p>方案三：</p>
+<p>打开设置，搜索 <code>unknown</code>，找到 <code>CSS &gt; Lint: Unknown At Rules</code> 配置项，将 <code>warning</code> 改成 <code>ignore</code>。</p>
+<h2>参考</h2>
+<p><a href="https://flaviocopes.com/fix-unknown-at-rule-tailwind/" target="_blank">https://flaviocopes.com/fix-unknown-at-rule-tailwind/</a></p>
+</article><article id="2024-09-28T0810"><header class="flex gap-4 items-center"><time datetime="">2024-09-28</time><span>#vscode</span><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-09-28T0810">vscode - Syntax Highlight, Emmet, IntelliSense support for HTML/CSS in ES6 Template Strings</a></h1><p>你可以使用 <a href="https://marketplace.visualstudio.com/items?itemName=pushqrdx.inline-html" target="_blank">inline-html</a> 插件来实现这个需求。</p>
+<p>具体操作可以参考 <a href="https://joyofcode.xyz/template-strings-syntax-highlight" target="_blank">joyofcode 的这篇文章</a>。</p>
+</article><article id="2024-09-28T0820"><header class="flex gap-4 items-center"><time datetime="">2024-09-28</time><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-09-28T0820">将 Vite 项目部署到 GitHub Page</a></h1><p>1、安装 gh-pages</p>
+
+    <div class="code-block__wrapper language-bash">
+      <div class="code-block__header">
+        <span class="lang">bash</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#DCDCAA">npm</span><span style="color:#CE9178"> i</span><span style="color:#569CD6"> -D</span><span style="color:#CE9178"> gh-pages</span></span></code></pre>
+
+    </div><p>2、修改本地代码：</p>
+<p>对 vite.config.js 进行修改。记得将 <code>&quot;/repo-name/&quot;</code> 的 repo-name 改成对应的仓库名。</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">defineConfig</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> "vite"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">export</span><span style="color:#C586C0"> default</span><span style="color:#DCDCAA"> defineConfig</span><span style="color:#D4D4D4">({</span></span>
+<span class="line"><span style="color:#9CDCFE">  base:</span><span style="color:#9CDCFE"> mode</span><span style="color:#D4D4D4"> === </span><span style="color:#CE9178">"development"</span><span style="color:#D4D4D4"> ? </span><span style="color:#CE9178">"/"</span><span style="color:#D4D4D4"> : </span><span style="color:#CE9178">"/repo-name/"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#D4D4D4">});</span></span></code></pre>
+
+    </div><p>修改 package.json:</p>
+
+    <div class="code-block__wrapper language-json">
+      <div class="code-block__header">
+        <span class="lang">json</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-json"><span class="line"><span style="color:#D4D4D4">{</span></span>
+<span class="line"><span style="color:#9CDCFE">	"scripts"</span><span style="color:#D4D4D4">: {</span></span>
+<span class="line"><span style="color:#9CDCFE">			"predeploy"</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">"npm run build"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">			"deploy"</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">"gh-pages -d dist"</span></span>
+<span class="line"><span style="color:#D4D4D4">		},</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+
+    </div><p>3、运行 <code>npm run deploy</code> 命令。</p>
+</article><article id="2024-09-27T0800"><header class="flex gap-4 items-center"><time datetime="">2024-09-27</time><span>#javascript</span><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-09-27T0800">js - enable type checking in javascript</a></h1><h2>一、启用 type checking</h2>
+<p>方式一：在项目根目录里添加 <code>jsconfig.json</code>，并添加如下配置：</p>
+
+    <div class="code-block__wrapper language-json">
+      <div class="code-block__header">
+        <span class="code-block__filename">jsconfig.json</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-json"><span class="line"><span style="color:#D4D4D4">{</span></span>
+<span class="line"><span style="color:#9CDCFE">  "compilerOptions"</span><span style="color:#D4D4D4">: {</span></span>
+<span class="line"><span style="color:#9CDCFE">    "checkJs"</span><span style="color:#D4D4D4">: </span><span style="color:#569CD6">true</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">    "strict"</span><span style="color:#D4D4D4">: </span><span style="color:#569CD6">true</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+
+    </div><p>方式二：在你正在工作的 JavaScript 文件的最上方添加如下注释：</p>
+<ul>
+<li>该注释的作用是：Enables semantic checking in a JavaScript file. Must be at the top of a file.</li>
+</ul>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#6A9955">// @ts-check</span></span></code></pre>
+
+    </div><p>这么做相当于在 jsconfig.json 里添加如下配置，但仅限于当前文件，并且没有 <code>&quot;strict&quot;: true</code>，意味着出现类型问题时不会报错。</p>
+
+    <div class="code-block__wrapper language-json">
+      <div class="code-block__header">
+        <span class="lang">json</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-json"><span class="line"><span style="color:#D4D4D4">{</span></span>
+<span class="line"><span style="color:#9CDCFE">  "compilerOptions"</span><span style="color:#D4D4D4">: {</span></span>
+<span class="line"><span style="color:#9CDCFE">    "checkJs"</span><span style="color:#D4D4D4">: </span><span style="color:#569CD6">true</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+
+    </div><h2>二、add typing</h2>
+<p>示例一：</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="code-block__filename">main.js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#6A9955">/**</span></span>
+<span class="line"><span style="color:#6A9955"> * </span><span style="color:#569CD6">@param</span><span style="color:#4EC9B0"> {number}</span><span style="color:#9CDCFE"> age</span></span>
+<span class="line"><span style="color:#6A9955"> */</span></span>
+<span class="line"><span style="color:#569CD6">function</span><span style="color:#DCDCAA"> dada</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">age</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#6A9955">  //</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+
+    </div><p>示例二：</p>
+
+    <div class="code-block__wrapper language-ts">
+      <div class="code-block__header">
+        <span class="code-block__filename">types.d.ts</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-ts"><span class="line"><span style="color:#C586C0">export</span><span style="color:#569CD6"> type</span><span style="color:#4EC9B0"> Site</span><span style="color:#D4D4D4"> = {</span></span>
+<span class="line"><span style="color:#9CDCFE">  title</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  url</span><span style="color:#D4D4D4">: </span><span style="color:#4EC9B0">string</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">};</span></span></code></pre>
+
+    </div>
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="code-block__filename">main.js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#6A9955">/**</span></span>
+<span class="line"><span style="color:#6A9955"> * </span><span style="color:#569CD6">@returns</span><span style="color:#4EC9B0"> {import('./types').Site}</span></span>
+<span class="line"><span style="color:#6A9955"> */</span></span>
+<span class="line"><span style="color:#569CD6">function</span><span style="color:#DCDCAA"> mdToData</span><span style="color:#D4D4D4">() {</span></span>
+<span class="line"><span style="color:#C586C0">  return</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">title:</span><span style="color:#CE9178"> ""</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">url:</span><span style="color:#CE9178"> ""</span><span style="color:#D4D4D4"> };</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+
+    </div>
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="code-block__filename">main.js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#569CD6">function</span><span style="color:#DCDCAA"> mdToData</span><span style="color:#D4D4D4">() {</span></span>
+<span class="line"><span style="color:#6A9955">  /** </span><span style="color:#569CD6">@type</span><span style="color:#4EC9B0"> {import('./types').Site}</span><span style="color:#6A9955"> */</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#4FC1FF"> site</span><span style="color:#D4D4D4"> = { </span><span style="color:#9CDCFE">title:</span><span style="color:#CE9178"> ""</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">url:</span><span style="color:#CE9178"> ""</span><span style="color:#D4D4D4"> };</span></span>
+<span class="line"><span style="color:#C586C0">  return</span><span style="color:#9CDCFE"> site</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+
+    </div></article><article id="2024-09-26T0800"><header class="flex gap-4 items-center"><time datetime="">2024-09-26</time><span>#javascript</span><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-09-26T0800">js - this in event handler</a></h1><p>一、当事件处理程序为箭头函数时，<code>this</code> 是 <code>undefined</code>。</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#9CDCFE">$btn</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">addEventListener</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"click"</span><span style="color:#D4D4D4">, () </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#569CD6">this</span><span style="color:#D4D4D4">); </span><span style="color:#6A9955">// this is undefined.</span></span>
+<span class="line"><span style="color:#D4D4D4">});</span></span></code></pre>
+
+    </div><p>二、当事件处理程序是普通函数时，<code>this</code> 是绑定该事件处理程序的元素。</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#9CDCFE">$btn</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">addEventListener</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"click"</span><span style="color:#D4D4D4">, </span><span style="color:#569CD6">function</span><span style="color:#D4D4D4"> () {</span></span>
+<span class="line"><span style="color:#9CDCFE">  console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#569CD6">this</span><span style="color:#D4D4D4">); </span><span style="color:#6A9955">// this is $btn element.</span></span>
+<span class="line"><span style="color:#D4D4D4">});</span></span></code></pre>
+
+    </div></article><article id="2024-09-14T0800"><header class="flex gap-4 items-center"><time datetime="">2024-09-14</time><span>#open_api</span><a class="ml-auto" href="#top">
 ↑
 </a></header><h1><a href="#2024-09-14T0800">TMDB  API</a></h1><h2>Links Shortcut</h2>
 <p><a href="https://www.themoviedb.org/settings/api" target="_blank">My API Settings — The Movie Database (TMDB)</a></p>
