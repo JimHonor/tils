@@ -4,7 +4,208 @@
             <a href="#${t}"">${r}</a>
           </li>
         `).join("");u.innerHTML=e}
-</script></head> <body>  <header> <h1>TILs</h1> <p class="text-xs">一共有 73 条 TIL ...</p> <div class="search-wrapper relative" data-astro-cid-2hkkvdbw> <form id="search-form" data-astro-cid-2hkkvdbw> <input class="w-full outline-none" name="search" type="search" placeholder="Types..." autocomplete="off" data-astro-cid-2hkkvdbw> </form> <ul id="search-result" class="absolute top-[48px] w-full rounded pl-0 text-left max-h-[360px] overflow-auto" data-astro-cid-2hkkvdbw></ul> </div>   </header> <main id="top"> <article id="2024-09-28T0800"><header class="flex gap-4 items-center"><time datetime="">2024-09-28</time><span>#tailwind</span><a class="ml-auto" href="#top">
+</script></head> <body>  <header> <h1>TILs</h1> <p class="text-xs">一共有 78 条 TIL ...</p> <div class="search-wrapper relative" data-astro-cid-2hkkvdbw> <form id="search-form" data-astro-cid-2hkkvdbw> <input class="w-full outline-none" name="search" type="search" placeholder="Types..." autocomplete="off" data-astro-cid-2hkkvdbw> </form> <ul id="search-result" class="absolute top-[48px] w-full rounded pl-0 text-left max-h-[360px] overflow-auto" data-astro-cid-2hkkvdbw></ul> </div>   </header> <main id="top"> <article id="2024-10-06T0800"><header class="flex gap-4 items-center"><time datetime="">2024-10-06</time><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-10-06T0800">esbuild</a></h1><p><a href="https://esbuild.github.io/getting-started/" target="_blank">https://esbuild.github.io/getting-started/</a></p>
+<p>一是用命令行传出参数的方式调整配置。
+二是用配置文件的方式调整配置。</p>
+<p>↓↓
+<a href="https://esbuild.github.io/api/#build" target="_blank">https://esbuild.github.io/api/#build</a></p>
+<p>This is the primary interface to esbuild. You typically pass one or more <a href="https://esbuild.github.io/api/#entry-points" target="_blank">entry point</a> files to process along with various options, and then esbuild writes the results back out to the file system.</p>
+<ul>
+<li>pass <a href="https://esbuild.github.io/api/#entry-points" target="_blank">entry point</a> files</li>
+<li>enables bundling</li>
+<li>generate output files to output directory</li>
+</ul>
+
+    <div class="code-block__wrapper language-bash">
+      <div class="code-block__header">
+        <span class="lang">bash</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#DCDCAA">esbuild</span><span style="color:#CE9178"> app.ts</span><span style="color:#569CD6"> --bundle</span><span style="color:#569CD6"> --outdir=dist</span></span></code></pre>
+
+    </div>
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#C586C0">import</span><span style="color:#569CD6"> *</span><span style="color:#C586C0"> as</span><span style="color:#9CDCFE"> esbuild</span><span style="color:#C586C0"> from</span><span style="color:#CE9178"> 'esbuild'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">let</span><span style="color:#9CDCFE"> result</span><span style="color:#D4D4D4"> = </span><span style="color:#C586C0">await</span><span style="color:#9CDCFE"> esbuild</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">build</span><span style="color:#D4D4D4">({</span></span>
+<span class="line"><span style="color:#9CDCFE">  entryPoints:</span><span style="color:#D4D4D4"> [</span><span style="color:#CE9178">'app.ts'</span><span style="color:#D4D4D4">],</span></span>
+<span class="line"><span style="color:#9CDCFE">  bundle:</span><span style="color:#569CD6"> true</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  outdir:</span><span style="color:#CE9178"> 'dist'</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#D4D4D4">})</span></span>
+<span class="line"><span style="color:#9CDCFE">console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">result</span><span style="color:#D4D4D4">)</span></span></code></pre>
+
+    </div><p>↓↓
+<a href="https://janessagarrow.com/blog/typescript-and-esbuild/" target="_blank">https://janessagarrow.com/blog/typescript-and-esbuild/</a></p>
+<p>There are lots of different config options:</p>
+<ul>
+<li><code>bundle</code>: Bundle all input sources into a single output source instead of one output source per input.</li>
+<li><code>minify</code>: Minify compiled JavaScript code to reduce file size for output files.</li>
+<li><code>outfile</code>: filename that you want the generated JavaScript code to be written to.</li>
+</ul>
+<p>运行 js 文件来打包而不是运行 CLI 命令：</p>
+<ul>
+<li><code>node build.js</code></li>
+</ul>
+</article><article id="2024-10-06T0810"><header class="flex gap-4 items-center"><time datetime="">2024-10-06</time><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-10-06T0810">esbuild - for html files - for json files</a></h1><h2>示例 - HTML files</h2>
+<p>对于 HTML 文件，直接用 <a href="https://esbuild.github.io/content-types/#copy" target="_blank"><code>copy</code> loader</a> 将它们原封不动地拷贝到 output directory。</p>
+<p>举个例子：</p>
+<p>这是你的 HTML 文件：</p>
+
+    <div class="code-block__wrapper language-html">
+      <div class="code-block__header">
+        <span class="code-block__filename">index.html</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-html"><span class="line"><span style="color:#808080">&#x3C;!</span><span style="color:#569CD6">DOCTYPE</span><span style="color:#9CDCFE"> html</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#808080">&#x3C;</span><span style="color:#569CD6">html</span><span style="color:#9CDCFE"> lang</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"en"</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#D4D4D4">	...</span></span>
+<span class="line"><span style="color:#808080">&#x3C;/</span><span style="color:#569CD6">html</span><span style="color:#808080">></span></span></code></pre>
+
+    </div><p>那么，运行下面的打包命令后：</p>
+
+    <div class="code-block__wrapper language-bash">
+      <div class="code-block__header">
+        <span class="lang">bash</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#DCDCAA">esbuild</span><span style="color:#569CD6"> --bundle</span><span style="color:#CE9178"> index.html</span><span style="color:#569CD6"> --loader:.html=copy</span><span style="color:#569CD6"> --outdir=dist</span></span></code></pre>
+
+    </div><p>esbuild 就会将其原封不动地出拷贝到打包目录：</p>
+
+    <div class="code-block__wrapper language-html">
+      <div class="code-block__header">
+        <span class="code-block__filename">dist/index.html</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-html"><span class="line"><span style="color:#808080">&#x3C;!</span><span style="color:#569CD6">DOCTYPE</span><span style="color:#9CDCFE"> html</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#808080">&#x3C;</span><span style="color:#569CD6">html</span><span style="color:#9CDCFE"> lang</span><span style="color:#D4D4D4">=</span><span style="color:#CE9178">"en"</span><span style="color:#808080">></span></span>
+<span class="line"><span style="color:#D4D4D4">	...</span></span>
+<span class="line"><span style="color:#808080">&#x3C;/</span><span style="color:#569CD6">html</span><span style="color:#808080">></span></span></code></pre>
+
+    </div><h2>示例 - JSON files</h2>
+<p>很奇怪，对于 json 文件，会将其编译成 js 文件，然后这个编译后 js 文件和原本的 json 文件一起输出到打包目录里。</p>
+<p>而如果加了 <code>--loader:.json=copy</code> option，则不会编译，而只是将 json 文件拷贝到打包目录。</p>
+<p><a href="https://esbuild.github.io/content-types/#copy" target="_blank">https://esbuild.github.io/content-types/#copy</a></p>
+<ul>
+<li>→ 他这个文档里对 copy loader 的解释我看不懂。</li>
+</ul>
+<p><a href="https://esbuild.github.io/content-types/#json" target="_blank">https://esbuild.github.io/content-types/#json</a></p>
+<ul>
+<li>The <code>json</code> loader is enabled by default for <code>.json</code> files. <strong>It parses the JSON file into a JavaScript object</strong> at build time and exports the object as the default export.</li>
+</ul>
+</article><article id="2024-10-06T0820"><header class="flex gap-4 items-center"><time datetime="">2024-10-06</time><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-10-06T0820">esbuild - common bugs</a></h1><h2>Could not resolve &quot;src/content&quot;</h2>
+<p><code>    &quot;bundle&quot;: &quot;esbuild src/content-script.js --bundle --outfile=dist/content-script.js&quot;</code></p>
+<p>运行上面的命令后报错：</p>
+
+    <div class="code-block__wrapper language-txt">
+      <div class="code-block__header">
+        <span class="lang">txt</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-txt"><span class="line"><span>Could not resolve "src/content"</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  Use the relative path "./src/content" to reference the file "src/content/index.js". Without the</span></span>
+<span class="line"><span>  leading "./", the path "src/content" is being interpreted as a package path instead.</span></span></code></pre>
+
+    </div><h2>Top-level await is currently not supported with the &quot;iife&quot; output format</h2>
+<p>当我在一个 <code>.js</code> 文件里写了一个 top-level await 后，esbuild 就抛出这个报错信息。</p>
+<p>解决方案就是，修改 <code>.js</code> 的 <a href="https://esbuild.github.io/api/#format" target="_blank">output format</a>，如果脚本是在浏览器环境下运行的话，就改成 <code>esm</code> 格式，比如：</p>
+
+    <div class="code-block__wrapper language-bash">
+      <div class="code-block__header">
+        <span class="lang">bash</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#DCDCAA">esbuild</span><span style="color:#CE9178"> index.js</span><span style="color:#569CD6"> --bundle</span><span style="color:#569CD6"> --format=esm</span></span></code></pre>
+
+    </div></article><article id="2024-10-06T0830"><header class="flex gap-4 items-center"><time datetime="">2024-10-06</time><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-10-06T0830">esbuild - rename individual entry file</a></h1><p>我的需求是，将下面这个文件拷贝到 output directory 时，将文件重命名 <code>manifest.json</code> ：</p>
+
+    <div class="code-block__wrapper language-json">
+      <div class="code-block__header">
+        <span class="code-block__filename">src/manifest_firefox.json</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-json"><span class="line"><span style="color:#D4D4D4">...</span></span></code></pre>
+
+    </div><p><a href="https://esbuild.github.io/api/#entry-points" target="_blank">文档里说到 you can also specify a fully custom output path for each individual entry point using an alternative entry point syntax</a>，也就是：</p>
+
+    <div class="code-block__wrapper language-bash">
+      <div class="code-block__header">
+        <span class="lang">bash</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#DCDCAA">esbuild</span><span style="color:#CE9178"> manifest=./src/manifest_firefox.json</span><span style="color:#569CD6"> --loader:.json=copy</span><span style="color:#569CD6"> --outdir=dist</span></span></code></pre>
+
+    </div><p>打包后，就是这样：</p>
+
+    <div class="code-block__wrapper language-json">
+      <div class="code-block__header">
+        <span class="code-block__filename">dist/manifest.json</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-json"><span class="line"><span style="color:#D4D4D4">...</span></span></code></pre>
+
+    </div></article><article id="2024-10-06T0840"><header class="flex gap-4 items-center"><time datetime="">2024-10-06</time><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-10-06T0840">esbuild - bundle css</a></h1><p>无需任何配置，esbuild 可以直接打包 CSS 文件。</p>
+<p>举个例子，这是你的入口文件：</p>
+
+    <div class="code-block__wrapper language-css">
+      <div class="code-block__header">
+        <span class="code-block__filename">index.css</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-css"><span class="line"><span style="color:#C586C0">@import</span><span style="color:#CE9178"> "./reset.css"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#C586C0">@import</span><span style="color:#CE9178"> "./app.css"</span><span style="color:#D4D4D4">;</span></span></code></pre>
+
+    </div><p>在这个 CSS 文件里，你导入了来自以下文件的样式：</p>
+
+    <div class="code-block__wrapper language-css">
+      <div class="code-block__header">
+        <span class="code-block__filename">reset.css</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-css"><span class="line"><span style="color:#569CD6">*</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#569CD6">*</span><span style="color:#D7BA7D">::before</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#569CD6">*</span><span style="color:#D7BA7D">::after</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  box-sizing</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">border-box</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+
+    </div>
+    <div class="code-block__wrapper language-css">
+      <div class="code-block__header">
+        <span class="code-block__filename">app.css</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-css"><span class="line"><span style="color:#D7BA7D">body</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-family</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">system-ui</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">sans-serif</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+
+    </div><p>那么，运行下面的打包命令后：</p>
+
+    <div class="code-block__wrapper language-bash">
+      <div class="code-block__header">
+        <span class="lang">bash</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#DCDCAA">esbuild</span><span style="color:#569CD6"> --bundle</span><span style="color:#CE9178"> index.css</span><span style="color:#569CD6"> --outdir=dist</span></span></code></pre>
+
+    </div><p>esbuild 就会打包出这样一个文件：</p>
+
+    <div class="code-block__wrapper language-css">
+      <div class="code-block__header">
+        <span class="code-block__filename">dist/index.css</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-css"><span class="line"><span style="color:#6A9955">/* reset.css */</span></span>
+<span class="line"><span style="color:#D7BA7D">body</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-family</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">system-ui</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">sans-serif</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">/* app.css */</span></span>
+<span class="line"><span style="color:#D7BA7D">body</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#9CDCFE">  font-family</span><span style="color:#D4D4D4">: </span><span style="color:#CE9178">system-ui</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">sans-serif</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+
+    </div><p><a href="https://esbuild.github.io/content-types/#css" target="_blank">更详细的内容，请看文档。</a></p>
+</article><article id="2024-09-28T0800"><header class="flex gap-4 items-center"><time datetime="">2024-09-28</time><span>#tailwind</span><a class="ml-auto" href="#top">
 ↑
 </a></header><h1><a href="#2024-09-28T0800">tailwind - fix Unknown at rule @tailwindcss</a></h1><h2>问题</h2>
 
