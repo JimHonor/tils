@@ -4,7 +4,327 @@
             <a href="#${t}"">${r}</a>
           </li>
         `).join("");u.innerHTML=e}
-</script></head> <body>  <header> <h1>TILs</h1> <p class="text-xs">一共有 78 条 TIL ...</p> <div class="search-wrapper relative" data-astro-cid-2hkkvdbw> <form id="search-form" data-astro-cid-2hkkvdbw> <input class="w-full outline-none" name="search" type="search" placeholder="Types..." autocomplete="off" data-astro-cid-2hkkvdbw> </form> <ul id="search-result" class="absolute top-[48px] w-full rounded pl-0 text-left max-h-[360px] overflow-auto" data-astro-cid-2hkkvdbw></ul> </div>   </header> <main id="top"> <article id="2024-10-06T0800"><header class="flex gap-4 items-center"><time datetime="">2024-10-06</time><a class="ml-auto" href="#top">
+</script></head> <body>  <header> <h1>TILs</h1> <p class="text-xs">一共有 80 条 TIL ...</p> <div class="search-wrapper relative" data-astro-cid-2hkkvdbw> <form id="search-form" data-astro-cid-2hkkvdbw> <input class="w-full outline-none" name="search" type="search" placeholder="Types..." autocomplete="off" data-astro-cid-2hkkvdbw> </form> <ul id="search-result" class="absolute top-[48px] w-full rounded pl-0 text-left max-h-[360px] overflow-auto" data-astro-cid-2hkkvdbw></ul> </div>   </header> <main id="top"> <article id="2024-10-12T0800"><header class="flex gap-4 items-center"><time datetime="">2024-10-12</time><span>#nodejs</span><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-10-12T0800">nodejs - using  `fs` module to interact with the file system</a></h1><h2><code>fs</code> module</h2>
+<p>The <code>node:fs</code> module enables interacting with the file system.</p>
+<p>To use the promise-based APIs:</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#C586C0">import</span><span style="color:#569CD6"> *</span><span style="color:#C586C0"> as</span><span style="color:#9CDCFE"> fs</span><span style="color:#C586C0"> from</span><span style="color:#CE9178"> "node:fs/promises"</span><span style="color:#D4D4D4">;</span></span></code></pre>
+
+    </div><p>To use the callback and sync APIs:</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#C586C0">import</span><span style="color:#569CD6"> *</span><span style="color:#C586C0"> as</span><span style="color:#9CDCFE"> fs</span><span style="color:#C586C0"> from</span><span style="color:#CE9178"> "node:fs"</span><span style="color:#D4D4D4">;</span></span></code></pre>
+
+    </div><p><a href="https://nodejs.org/api/fs.html" target="_blank">File system | Node.js v20.0.0 Documentation</a></p>
+<ul>
+<li>API 有三种版本：异步的 Promise 版、异步的 Callback 版，同步版</li>
+<li>接口：
+<ul>
+<li>fsPromises - 异步的 Promise 版</li>
+<li>fs - 异步的 Callback 版</li>
+<li>fsSync - 同步版</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://www.runoob.com/nodejs/nodejs-fs.html" target="_blank">Node.js 文件系统 | 菜鸟教程</a></p>
+<ul>
+<li>异步和同步之分：Node.js 文件系统（fs 模块）模块中的方法均有异步和同步版本，例如读取文件内容的函数有异步的 fs.readFile() 和同步的 fs.readFileSync()。
+<ul>
+<li>异步版本的话，函数的最后一个参数为回调函数，回调函数的第一个参数包含了错误信息(error)。</li>
+<li>建议大家使用异步方法，比起同步，异步方法性能更高，速度更快，而且没有阻塞。</li>
+</ul>
+</li>
+</ul>
+<h2>删除文件</h2>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">promises</span><span style="color:#C586C0"> as</span><span style="color:#9CDCFE"> fsp</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> "fs"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">await</span><span style="color:#9CDCFE"> fsp</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">unlink</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"path..."</span><span style="color:#D4D4D4">);</span></span></code></pre>
+
+    </div><h2>获取指定目录下所有文件的文件名</h2>
+<p>如果是文件，则得到的文件名会包含扩展名，比如 <code>package.json</code>。</p>
+<p>如果是文件夹，则得到的是文件夹名，比如 <code>node_modules</code> 。</p>
+<p>1）通过异步回调的方式获取：</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> fs</span><span style="color:#D4D4D4"> = </span><span style="color:#DCDCAA">require</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"fs"</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> folderPath</span><span style="color:#D4D4D4"> = </span><span style="color:#CE9178">"C:</span><span style="color:#D7BA7D">\\</span><span style="color:#CE9178">mine</span><span style="color:#D7BA7D">\\</span><span style="color:#CE9178">Note</span><span style="color:#D7BA7D">\\</span><span style="color:#CE9178">TEST-capturer"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">fs</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">readdir</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">folderPath</span><span style="color:#D4D4D4">, (</span><span style="color:#9CDCFE">err</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">files</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#C586C0">  if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">err</span><span style="color:#D4D4D4">) </span><span style="color:#C586C0">throw</span><span style="color:#9CDCFE"> err</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">  console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">files</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">// >> [ '2023-12-01-946.md', '2023-12-02-001.md' ]</span></span></code></pre>
+
+    </div><p>Here, <code>readdir()</code> 会获取指定目录下所有文件的名称。</p>
+<p>2）通过异步 Promise 的方式获取：</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">readdir</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> "node:fs/promises"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">try</span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#4FC1FF"> files</span><span style="color:#D4D4D4"> = </span><span style="color:#C586C0">await</span><span style="color:#DCDCAA"> readdir</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">path</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">files</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">} </span><span style="color:#C586C0">catch</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">err</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#9CDCFE">  console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">error</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">err</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+
+    </div><h2>读取文件内容</h2>
+<p>1）读取 <code>txt</code> 文件：</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#569CD6">var</span><span style="color:#9CDCFE"> fs</span><span style="color:#D4D4D4"> = </span><span style="color:#DCDCAA">require</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"fs"</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">// 异步读取</span></span>
+<span class="line"><span style="color:#9CDCFE">fs</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">readFile</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"input.txt"</span><span style="color:#D4D4D4">, </span><span style="color:#569CD6">function</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">err</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">data</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#C586C0">  if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">err</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#C586C0">    return</span><span style="color:#9CDCFE"> console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">error</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">err</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#9CDCFE">  console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"异步读取: "</span><span style="color:#D4D4D4"> + </span><span style="color:#9CDCFE">data</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">toString</span><span style="color:#D4D4D4">());</span></span>
+<span class="line"><span style="color:#D4D4D4">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">// 同步读取</span></span>
+<span class="line"><span style="color:#569CD6">var</span><span style="color:#9CDCFE"> data</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">fs</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">readFileSync</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"input.txt"</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"同步读取: "</span><span style="color:#D4D4D4"> + </span><span style="color:#9CDCFE">data</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">toString</span><span style="color:#D4D4D4">());</span></span></code></pre>
+
+    </div><p>2）读取 <code>json</code> 文件：</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">readFile</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> "fs/promises"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> filePath</span><span style="color:#D4D4D4"> = </span><span style="color:#CE9178">"C:</span><span style="color:#D7BA7D">\\</span><span style="color:#CE9178">users</span><span style="color:#D7BA7D">\\</span><span style="color:#CE9178">use1</span><span style="color:#D7BA7D">\\</span><span style="color:#CE9178">filename.json"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> json</span><span style="color:#D4D4D4"> = </span><span style="color:#C586C0">await</span><span style="color:#DCDCAA"> readFile</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">filePath</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">"utf-8"</span><span style="color:#D4D4D4">); </span><span style="color:#6A9955">// return json string</span></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> data</span><span style="color:#D4D4D4"> = </span><span style="color:#4FC1FF">JSON</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">parse</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">json</span><span style="color:#D4D4D4">); </span><span style="color:#6A9955">// return javascript object or array</span></span></code></pre>
+
+    </div><p>注意：<code>readFile()</code> 函数调用时必须指定第二个参数，才能返回 json string。</p>
+<p>source: <a href="https://stackoverflow.com/questions/10011011/using-node-js-how-do-i-read-a-json-file-into-server-memory" target="_blank">https://stackoverflow.com/questions/10011011/using-node-js-how-do-i-read-a-json-file-into-server-memory</a></p>
+<h2>写入文件</h2>
+<p>语法：<code>fs.writeFile(file, data[, options], callback)</code></p>
+<p>1）创建一个 <code>txt</code> 文件：</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#569CD6">var</span><span style="color:#9CDCFE"> fs</span><span style="color:#D4D4D4"> = </span><span style="color:#DCDCAA">require</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"fs"</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">fs</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">writeFile</span><span style="color:#D4D4D4">(</span></span>
+<span class="line"><span style="color:#CE9178">  "input.txt"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#CE9178">  "我是通过 fs.writeFile 写入文件的内容"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#569CD6">  function</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">err</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#C586C0">    if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">err</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#C586C0">      return</span><span style="color:#9CDCFE"> console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">error</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">err</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">    }</span></span>
+<span class="line"><span style="color:#9CDCFE">    console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"数据写入成功！"</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">  },</span></span>
+<span class="line"><span style="color:#D4D4D4">);</span></span></code></pre>
+
+    </div><p>注意：</p>
+<ul>
+<li>fs.writeFile() 的 path 参数有点奇怪：用相对路径的话，并不是以文件所在目录作为基准，而是以项目根目录为基准。</li>
+<li>fs.writeFile() 的 path 参数如果包含目录的话，一定得是提前自己手动创建好的，不然会报错。</li>
+</ul>
+<p>2）创建一个 <code>md</code> 文件：</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#C586C0">import</span><span style="color:#9CDCFE"> fs</span><span style="color:#C586C0"> from</span><span style="color:#CE9178"> "fs"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> filePath</span><span style="color:#D4D4D4"> = </span><span style="color:#CE9178">"demo.md"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> content</span><span style="color:#D4D4D4"> = </span><span style="color:#CE9178">"### heading 3"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">fs</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">writeFile</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">filePath</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">content</span><span style="color:#D4D4D4">, (</span><span style="color:#9CDCFE">err</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#C586C0">  if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">err</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#6A9955">    // do something when errors happen.</span></span>
+<span class="line"><span style="color:#C586C0">    return</span><span style="color:#9CDCFE"> console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">error</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">err</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">  // do something after the file was created.</span></span>
+<span class="line"><span style="color:#D4D4D4">});</span></span></code></pre>
+
+    </div><h2>读取指定目录下所有文件的内容</h2>
+<p>思路：先读取到指定目录下的所有文件名，再依次读取每个文件的内容。</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> fsPromise</span><span style="color:#D4D4D4"> = </span><span style="color:#DCDCAA">require</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"fs/promises"</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> path</span><span style="color:#D4D4D4"> = </span><span style="color:#DCDCAA">require</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"path"</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> folderPath</span><span style="color:#D4D4D4"> = </span><span style="color:#CE9178">"C:</span><span style="color:#D7BA7D">\\</span><span style="color:#CE9178">mine</span><span style="color:#D7BA7D">\\</span><span style="color:#CE9178">Note</span><span style="color:#D7BA7D">\\</span><span style="color:#CE9178">TEST-capturer"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">async</span><span style="color:#569CD6"> function</span><span style="color:#DCDCAA"> getAllFiles</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">dir</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#4FC1FF"> result</span><span style="color:#D4D4D4"> = [];</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#4FC1FF"> fileNames</span><span style="color:#D4D4D4"> = </span><span style="color:#C586C0">await</span><span style="color:#9CDCFE"> fsPromise</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">readdir</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">dir</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#C586C0">  for</span><span style="color:#D4D4D4"> (</span><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> fileName</span><span style="color:#569CD6"> of</span><span style="color:#9CDCFE"> fileNames</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> filePath</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">path</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">join</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">dir</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">fileName</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#569CD6">    const</span><span style="color:#4FC1FF"> file</span><span style="color:#D4D4D4"> = </span><span style="color:#C586C0">await</span><span style="color:#9CDCFE"> fsPromise</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">readFile</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">filePath</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">    result</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">push</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">file</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">toString</span><span style="color:#D4D4D4">());</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"><span style="color:#C586C0">  return</span><span style="color:#9CDCFE"> result</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#DCDCAA">getAllFiles</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">folderPath</span><span style="color:#D4D4D4">).</span><span style="color:#DCDCAA">then</span><span style="color:#D4D4D4">((</span><span style="color:#9CDCFE">result</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=></span><span style="color:#9CDCFE"> console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">result</span><span style="color:#D4D4D4">));</span></span>
+<span class="line"><span style="color:#6A9955">// >> [ '# 111\r\n\r\n999\r\n', '111' ]</span></span></code></pre>
+
+    </div><h2>读取文件信息</h2>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#C586C0">import</span><span style="color:#9CDCFE"> fs</span><span style="color:#C586C0"> from</span><span style="color:#CE9178"> "fs"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> filePath</span><span style="color:#D4D4D4"> = </span><span style="color:#CE9178">"demo.txt"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">fs</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">stat</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">filePath</span><span style="color:#D4D4D4">, (</span><span style="color:#9CDCFE">err</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">stats</span><span style="color:#D4D4D4">) </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#C586C0">  if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">err</span><span style="color:#D4D4D4">) </span><span style="color:#C586C0">throw</span><span style="color:#9CDCFE"> err</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#6A9955">  // Here you have access to the "stats" object.</span></span>
+<span class="line"><span style="color:#6A9955">  // The "stats" object includes lots of information about a file.</span></span>
+<span class="line"><span style="color:#6A9955">  // For example:</span></span>
+<span class="line"><span style="color:#6A9955">  // The created time:</span></span>
+<span class="line"><span style="color:#9CDCFE">  console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">stats</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">birthtimeMs</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#9CDCFE">  console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">stats</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">birthtime</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> stats</span><span style="color:#D4D4D4"> = {</span></span>
+<span class="line"><span style="color:#9CDCFE">  dev:</span><span style="color:#B5CEA8"> 842122948</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  mode:</span><span style="color:#B5CEA8"> 33206</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  nlink:</span><span style="color:#B5CEA8"> 1</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  uid:</span><span style="color:#B5CEA8"> 0</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  gid:</span><span style="color:#B5CEA8"> 0</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  rdev:</span><span style="color:#B5CEA8"> 0</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  blksize:</span><span style="color:#B5CEA8"> 4096</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  ino:</span><span style="color:#B5CEA8"> 4785074604347757</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  size:</span><span style="color:#B5CEA8"> 12</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  blocks:</span><span style="color:#B5CEA8"> 0</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  atimeMs:</span><span style="color:#B5CEA8"> 1703731315382.569</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  mtimeMs:</span><span style="color:#B5CEA8"> 1703730994759.9214</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  ctimeMs:</span><span style="color:#B5CEA8"> 1703731315355.52</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  birthtimeMs:</span><span style="color:#B5CEA8"> 1703730986883.2766</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  atime:</span><span style="color:#CE9178"> "2023-12-28T02:41:55.383Z"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  mtime:</span><span style="color:#CE9178"> "2023-12-28T02:36:34.760Z"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  ctime:</span><span style="color:#CE9178"> "2023-12-28T02:41:55.356Z"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#9CDCFE">  birthtime:</span><span style="color:#CE9178"> "2023-12-28T02:36:26.883Z"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#D4D4D4">};</span></span></code></pre>
+
+    </div><p>source: <a href="https://www.misterma.com/archives/930/" target="_blank">https://www.misterma.com/archives/930/</a></p>
+</article><article id="2024-10-12T0810"><header class="flex gap-4 items-center"><time datetime="">2024-10-12</time><span>#nodejs</span><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-10-12T0810">nodejs - fix `__dirname` is not defined in ES module scope</a></h1><h2></h2>
+<p><a href="https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c" target="_blank">https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c</a></p>
+<p><strong>Node.js 20.11+</strong></p>
+<p>Use <a href="https://nodejs.org/api/esm.html#importmetadirname" target="_blank"><code>import.meta.dirname</code></a> and <a href="https://nodejs.org/api/esm.html#importmetafilename" target="_blank"><code>import.meta.filename</code></a>.</p>
+<p><strong>Older Node.js versions</strong></p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">fileURLToPath</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> "node:url"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#C586C0">import</span><span style="color:#9CDCFE"> path</span><span style="color:#C586C0"> from</span><span style="color:#CE9178"> "node:path"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> __filename</span><span style="color:#D4D4D4"> = </span><span style="color:#DCDCAA">fileURLToPath</span><span style="color:#D4D4D4">(</span><span style="color:#C586C0">import</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">meta</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">url</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> __dirname</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">path</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">dirname</span><span style="color:#D4D4D4">(</span><span style="color:#DCDCAA">fileURLToPath</span><span style="color:#D4D4D4">(</span><span style="color:#C586C0">import</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">meta</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">url</span><span style="color:#D4D4D4">));</span></span></code></pre>
+
+    </div><p>However, in most cases, this is better:</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">fileURLToPath</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> "node:url"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> foo</span><span style="color:#D4D4D4"> = </span><span style="color:#DCDCAA">fileURLToPath</span><span style="color:#D4D4D4">(</span><span style="color:#569CD6">new</span><span style="color:#DCDCAA"> URL</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"foo.js"</span><span style="color:#D4D4D4">, </span><span style="color:#C586C0">import</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">meta</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">url</span><span style="color:#D4D4D4">));</span></span></code></pre>
+
+    </div><p>And many Node.js APIs accept URL directly, so you can just do this:</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> foo</span><span style="color:#D4D4D4"> = </span><span style="color:#569CD6">new</span><span style="color:#DCDCAA"> URL</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"foo.js"</span><span style="color:#D4D4D4">, </span><span style="color:#C586C0">import</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">meta</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">url</span><span style="color:#D4D4D4">);</span></span></code></pre>
+
+    </div><h2></h2>
+<p><a href="https://flaviocopes.com/fix-dirname-not-defined-es-module-scope/" target="_blank">How to fix <code>__dirname is not defined in ES module scope</code></a></p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#C586C0">import</span><span style="color:#9CDCFE"> path</span><span style="color:#C586C0"> from</span><span style="color:#CE9178"> "path"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">fileURLToPath</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> "url"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> __filename</span><span style="color:#D4D4D4"> = </span><span style="color:#DCDCAA">fileURLToPath</span><span style="color:#D4D4D4">(</span><span style="color:#C586C0">import</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">meta</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">url</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> __dirname</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">path</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">dirname</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">__filename</span><span style="color:#D4D4D4">);</span></span></code></pre>
+
+    </div><p><a href="https://stackabuse.com/bytes/fix-dirname-is-not-defined-in-es-module-scope-in-javascript-node/" target="_blank">Fix &quot;dirname is not defined in ES module scope&quot; in JavaScript/Node</a></p>
+<ul>
+<li><code>import.meta.url</code> to get the current file's as a URL</li>
+<li><code>url.fileURLToPath</code> to change the URL to a path</li>
+<li><code>path.dirname</code> to get the directory name</li>
+<li>实现一个 helper method：</li>
+</ul>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#C586C0">import</span><span style="color:#9CDCFE"> path</span><span style="color:#C586C0"> from</span><span style="color:#CE9178"> "path"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#C586C0">import</span><span style="color:#9CDCFE"> url</span><span style="color:#C586C0"> from</span><span style="color:#CE9178"> "url"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">export</span><span style="color:#569CD6"> function</span><span style="color:#DCDCAA"> currDir</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">fileUrl</span><span style="color:#D4D4D4">) {</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#4FC1FF"> __filename</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">url</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">fileURLToPath</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">fileUrl</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#C586C0">  return</span><span style="color:#9CDCFE"> path</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">dirname</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">__filename</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+
+    </div><ul>
+<li>使用：</li>
+</ul>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">currDir</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> "./lib"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> __dirname</span><span style="color:#D4D4D4"> = </span><span style="color:#DCDCAA">currDir</span><span style="color:#D4D4D4">(</span><span style="color:#C586C0">import</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">meta</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">url</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">__dirname</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A9955">// Prints: /Users/scott/sandbox/javascript</span></span></code></pre>
+
+    </div></article><article id="2024-10-06T0800"><header class="flex gap-4 items-center"><time datetime="">2024-10-06</time><a class="ml-auto" href="#top">
 ↑
 </a></header><h1><a href="#2024-10-06T0800">esbuild</a></h1><p><a href="https://esbuild.github.io/getting-started/" target="_blank">https://esbuild.github.io/getting-started/</a></p>
 <p>一是用命令行传出参数的方式调整配置。
