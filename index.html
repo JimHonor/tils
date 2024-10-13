@@ -4,7 +4,146 @@
             <a href="#${t}"">${r}</a>
           </li>
         `).join("");u.innerHTML=e}
-</script></head> <body>  <header> <h1>TILs</h1> <p class="text-xs">一共有 80 条 TIL ...</p> <div class="search-wrapper relative" data-astro-cid-2hkkvdbw> <form id="search-form" data-astro-cid-2hkkvdbw> <input class="w-full outline-none" name="search" type="search" placeholder="Types..." autocomplete="off" data-astro-cid-2hkkvdbw> </form> <ul id="search-result" class="absolute top-[48px] w-full rounded pl-0 text-left max-h-[360px] overflow-auto" data-astro-cid-2hkkvdbw></ul> </div>   </header> <main id="top"> <article id="2024-10-12T0800"><header class="flex gap-4 items-center"><time datetime="">2024-10-12</time><span>#nodejs</span><a class="ml-auto" href="#top">
+</script></head> <body>  <header> <h1>TILs</h1> <p class="text-xs">一共有 84 条 TIL ...</p> <div class="search-wrapper relative" data-astro-cid-2hkkvdbw> <form id="search-form" data-astro-cid-2hkkvdbw> <input class="w-full outline-none" name="search" type="search" placeholder="Types..." autocomplete="off" data-astro-cid-2hkkvdbw> </form> <ul id="search-result" class="absolute top-[48px] w-full rounded pl-0 text-left max-h-[360px] overflow-auto" data-astro-cid-2hkkvdbw></ul> </div>   </header> <main id="top"> <article id="2024-10-13T0800"><header class="flex gap-4 items-center"><time datetime="">2024-10-13</time><span>#nodejs</span><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-10-13T0800">nodejs - 为什么调用 `readFileSync` 时总是从根目录开始解析路径的</a></h1><p>【work】</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">readFileSync</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> "node:fs"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">resolve</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> "node:path"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">export</span><span style="color:#569CD6"> function</span><span style="color:#DCDCAA"> getBucketList</span><span style="color:#D4D4D4">() {</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#4FC1FF"> data</span><span style="color:#D4D4D4"> = </span><span style="color:#DCDCAA">readFileSync</span><span style="color:#D4D4D4">(</span></span>
+<span class="line"><span style="color:#DCDCAA">    resolve</span><span style="color:#D4D4D4">(</span><span style="color:#C586C0">import</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">meta</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">dirname</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">"./bucketlist.txt"</span><span style="color:#D4D4D4">),</span></span>
+<span class="line"><span style="color:#CE9178">    "utf-8"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#D4D4D4">  );</span></span>
+<span class="line"><span style="color:#9CDCFE">  console</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">log</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"🚀 ~ getBucketList ~ data:"</span><span style="color:#D4D4D4">, </span><span style="color:#9CDCFE">data</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+
+    </div><p>MD，打包时上面的代码还是会造成 Astro 的报错，只能改成下面这样：</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">readFileSync</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> "node:fs"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">join</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> "node:path"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">export</span><span style="color:#569CD6"> function</span><span style="color:#DCDCAA"> getBucketList</span><span style="color:#D4D4D4">() {</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#4FC1FF"> data</span><span style="color:#D4D4D4"> = </span><span style="color:#DCDCAA">readFileSync</span><span style="color:#D4D4D4">(</span></span>
+<span class="line"><span style="color:#DCDCAA">    join</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">process</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">cwd</span><span style="color:#D4D4D4">(), </span><span style="color:#CE9178">"src"</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">"data"</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">"bucketlist"</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">"bucketlist.txt"</span><span style="color:#D4D4D4">),</span></span>
+<span class="line"><span style="color:#CE9178">    "utf-8"</span><span style="color:#D4D4D4">,</span></span>
+<span class="line"><span style="color:#D4D4D4">  ).</span><span style="color:#DCDCAA">split</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"</span><span style="color:#D7BA7D">\r\n</span><span style="color:#CE9178">"</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">  return</span><span style="color:#9CDCFE"> data</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+
+    </div><p>↓↓
+<a href="https://stackoverflow.com/questions/44600943/fs-readfilesync-is-not-file-relative-node-js" target="_blank">path - fs.readFileSync is not file relative? Node.js - Stack Overflow</a></p>
+<p>From the <a href="https://nodejs.org/api/fs.html" target="_blank">docs</a>: &quot;The relative path to a filename can be used. Remember, however, that this path will be relative to <code>process.cwd()</code>.&quot;
+→ 卧槽，原来使用相对路径时，是相对于 the current working directory 的。</p>
+<p>You can resolve the path relative the location of the source file - rather than the current directory - using <a href="https://nodejs.org/docs/latest/api/path.html#path_path_resolve_paths" target="_blank"><code>path.resolve</code></a>:</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> path</span><span style="color:#D4D4D4"> = </span><span style="color:#DCDCAA">require</span><span style="color:#D4D4D4">(</span><span style="color:#CE9178">"path"</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> file</span><span style="color:#D4D4D4"> = </span><span style="color:#9CDCFE">fs</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">readFileSync</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">path</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">resolve</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">__dirname</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">"../file.xml"</span><span style="color:#D4D4D4">));</span></span></code></pre>
+
+    </div><p>→ 问题在于，我用的是 Astro，是基于 ESM 的，没法用 <code>__dirname</code> 来读取 the location of the source file。</p>
+<p>Since Node.js version 20.11.0 you can call <a href="https://nodejs.org/api/esm.html#importmetadirname" target="_blank"><code>import.meta.dirname</code></a> and <a href="https://nodejs.org/api/esm.html#importmetafilename" target="_blank"><code>import.meta.filename</code></a>. ⭐</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">resolve</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> "path"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#C586C0">import</span><span style="color:#D4D4D4"> { </span><span style="color:#9CDCFE">readFileSync</span><span style="color:#D4D4D4"> } </span><span style="color:#C586C0">from</span><span style="color:#CE9178"> "fs"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> file</span><span style="color:#D4D4D4"> = </span><span style="color:#DCDCAA">readFileSync</span><span style="color:#D4D4D4">(</span><span style="color:#DCDCAA">resolve</span><span style="color:#D4D4D4">(</span><span style="color:#C586C0">import</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">meta</span><span style="color:#D4D4D4">.</span><span style="color:#9CDCFE">dirname</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">"../file.xml"</span><span style="color:#D4D4D4">));</span></span></code></pre>
+
+    </div><p>↓↓
+<a href="https://nodejs.org/api/fs.html#fs_string_paths" target="_blank">https://nodejs.org/api/fs.html#fs_string_paths</a>
+File system | Node.js v22.8.0 Documentation</p>
+<p>Relative paths will be resolved <strong>relative to the current working directory</strong> as determined by calling <code>process.cwd()</code>.</p>
+</article><article id="2024-10-13T0810"><header class="flex gap-4 items-center"><time datetime="">2024-10-13</time><span>#nodejs</span><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-10-13T0810">nodejs - `path` 模块</a></h1><p><a href="https://javascript.ruanyifeng.com/nodejs/path.html" target="_blank">https://javascript.ruanyifeng.com/nodejs/path.html</a></p>
+<p><code>path.join()</code></p>
+<ul>
+<li>用于连接路径.</li>
+<li>主要用途在于，会正确使用当前系统的路径分隔符，Unix系统是”/“，Windows系统是 <code>\</code></li>
+</ul>
+<p><code>path.resolve()</code></p>
+<ul>
+<li>用于将相对路径转为绝对路径。</li>
+</ul>
+<p><code>path.parse()</code></p>
+<ul>
+<li>可以返回路径各部分的信息。</li>
+</ul>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#569CD6">var</span><span style="color:#9CDCFE"> myFilePath</span><span style="color:#D4D4D4"> = </span><span style="color:#CE9178">"/someDir/someFile.json"</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#9CDCFE">path</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">parse</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">myFilePath</span><span style="color:#D4D4D4">).</span><span style="color:#9CDCFE">base</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#6A9955">// "someFile.json"</span></span>
+<span class="line"><span style="color:#9CDCFE">path</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">parse</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">myFilePath</span><span style="color:#D4D4D4">).</span><span style="color:#9CDCFE">name</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#6A9955">// "someFile"</span></span>
+<span class="line"><span style="color:#9CDCFE">path</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">parse</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">myFilePath</span><span style="color:#D4D4D4">).</span><span style="color:#9CDCFE">ext</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#6A9955">// ".json"</span></span></code></pre>
+
+    </div></article><article id="2024-10-13T0820"><header class="flex gap-4 items-center"><time datetime="">2024-10-13</time><span>#nodejs</span><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-10-13T0820">nodejs - 判断是文件还是文件夹</a></h1><p><a href="https://www.misterma.com/archives/930/" target="_blank">Node.js 文件操作模块 fs 和 path 常用方法 - Mr. Ma's Blog</a></p>
+<ul>
+<li>使用 <code>stat</code> 获取文件信息：文件信息还包含一个 <code>isFile()</code> 方法，可以用来判断是文件还是目录，如果 <code>isFile()</code> 为 <code>true</code> 就是文件。</li>
+</ul>
+<p>↓</p>
+<p>Don't:</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> file</span><span style="color:#D4D4D4"> = </span><span style="color:#C586C0">await</span><span style="color:#9CDCFE"> fsPromise</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">readFile</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">filePath</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#6A9955">// do something...</span></span></code></pre>
+
+    </div><p>为什么不要这样做，因为你本来要操作的只是文件，但有可能遇到目录，这时就会报错。</p>
+<p>Do:</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#569CD6">const</span><span style="color:#4FC1FF"> stat</span><span style="color:#D4D4D4"> = </span><span style="color:#C586C0">await</span><span style="color:#9CDCFE"> fsPromise</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">stat</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">filePath</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">stat</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">isFile</span><span style="color:#D4D4D4">()) {</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#4FC1FF"> file</span><span style="color:#D4D4D4"> = </span><span style="color:#C586C0">await</span><span style="color:#9CDCFE"> fsPromise</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">readFile</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">filePath</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"><span style="color:#6A9955">  // do something...</span></span>
+<span class="line"><span style="color:#D4D4D4">}</span></span></code></pre>
+
+    </div></article><article id="2024-10-13T0830"><header class="flex gap-4 items-center"><time datetime="">2024-10-13</time><span>#nodejs</span><a class="ml-auto" href="#top">
+↑
+</a></header><h1><a href="#2024-10-13T0830">nodejs - 控制台中文乱码</a></h1><p><a href="https://www.jianshu.com/p/a07eeb43d8b3" target="_blank">解决Node.js的命令行输出中文乱码问题（也适用于Electron） - 简书</a></p>
+<ul>
+<li>通过命令<code>chcp 65001</code>就可以把当前命令行的输出转成utf8编码的。</li>
+</ul>
+<p>↓</p>
+
+    <div class="code-block__wrapper language-bash">
+      <div class="code-block__header">
+        <span class="lang">bash</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-bash"><span class="line"><span style="color:#DCDCAA">chcp</span><span style="color:#B5CEA8"> 65001</span><span style="color:#D4D4D4"> &#x26;&#x26; </span><span style="color:#DCDCAA">npx</span><span style="color:#CE9178"> vite</span></span></code></pre>
+
+    </div></article><article id="2024-10-12T0800"><header class="flex gap-4 items-center"><time datetime="">2024-10-12</time><span>#nodejs</span><a class="ml-auto" href="#top">
 ↑
 </a></header><h1><a href="#2024-10-12T0800">nodejs - using  `fs` module to interact with the file system</a></h1><h2><code>fs</code> module</h2>
 <p>The <code>node:fs</code> module enables interacting with the file system.</p>
@@ -238,7 +377,27 @@
 <span class="line"><span style="color:#D4D4D4">};</span></span></code></pre>
 
     </div><p>source: <a href="https://www.misterma.com/archives/930/" target="_blank">https://www.misterma.com/archives/930/</a></p>
-</article><article id="2024-10-12T0810"><header class="flex gap-4 items-center"><time datetime="">2024-10-12</time><span>#nodejs</span><a class="ml-auto" href="#top">
+<h2>新建文件夹</h2>
+<p><a href="https://nodejs.org/en/learn/manipulating-files/working-with-folders-in-nodejs" target="_blank">Node.js — Working with folders in Node.js</a></p>
+<p>↓</p>
+
+    <div class="code-block__wrapper language-js">
+      <div class="code-block__header">
+        <span class="lang">js</span>
+      </div>
+      <pre class="shiki dark-plus" style="background-color:#1E1E1E;color:#D4D4D4" tabindex="0"><code class="language-js"><span class="line"><span style="color:#569CD6">const</span><span style="color:#DCDCAA"> firstFun</span><span style="color:#D4D4D4"> = () </span><span style="color:#569CD6">=></span><span style="color:#D4D4D4"> {</span></span>
+<span class="line"><span style="color:#569CD6">  const</span><span style="color:#4FC1FF"> configPath</span><span style="color:#D4D4D4"> = </span><span style="color:#DCDCAA">getConfigPath</span><span style="color:#D4D4D4">();</span></span>
+<span class="line"></span>
+<span class="line highlighted"><span style="color:#C586C0">  if</span><span style="color:#D4D4D4"> (</span><span style="color:#9CDCFE">fs</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">existsSync</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">configPath</span><span style="color:#D4D4D4">)) {</span></span>
+<span class="line"><span style="color:#C586C0">    return</span><span style="color:#569CD6"> false</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#9CDCFE">  fs</span><span style="color:#D4D4D4">.</span><span style="color:#DCDCAA">writeFileSync</span><span style="color:#D4D4D4">(</span><span style="color:#9CDCFE">configPath</span><span style="color:#D4D4D4">, </span><span style="color:#CE9178">""</span><span style="color:#D4D4D4">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C586C0">  return</span><span style="color:#569CD6"> true</span><span style="color:#D4D4D4">;</span></span>
+<span class="line"><span style="color:#D4D4D4">};</span></span></code></pre>
+
+    </div></article><article id="2024-10-12T0810"><header class="flex gap-4 items-center"><time datetime="">2024-10-12</time><span>#nodejs</span><a class="ml-auto" href="#top">
 ↑
 </a></header><h1><a href="#2024-10-12T0810">nodejs - fix `__dirname` is not defined in ES module scope</a></h1><h2></h2>
 <p><a href="https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c" target="_blank">https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c</a></p>
